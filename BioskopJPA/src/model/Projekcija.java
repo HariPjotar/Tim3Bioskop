@@ -19,7 +19,7 @@ public class Projekcija implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int projekcijaID;
 
-	private BigDecimal cena;
+	private double cena;
 
 	private String datum;
 
@@ -58,11 +58,11 @@ public class Projekcija implements Serializable {
 		this.projekcijaID = projekcijaID;
 	}
 
-	public BigDecimal getCena() {
+	public double getCena() {
 		return this.cena;
 	}
 
-	public void setCena(BigDecimal cena) {
+	public void setCena(double cena) {
 		this.cena = cena;
 	}
 
@@ -156,6 +156,19 @@ public class Projekcija implements Serializable {
 		rezervacija.setProjekcija(null);
 
 		return rezervacija;
+	}
+	
+	public void racunanjeCene() {
+		String tip = this.tip;
+		if (tip.equalsIgnoreCase("pretpremijera")) {
+			this.cena = 550.00;
+		}
+		if (tip.equalsIgnoreCase("premijera")) {
+			this.cena = 470.00;
+		}
+		else {
+			this.cena = 350.00;
+		}
 	}
 
 }
