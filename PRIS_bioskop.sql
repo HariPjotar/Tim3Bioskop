@@ -61,16 +61,20 @@ CREATE TABLE `Radnik` (
 );
 
 CREATE TABLE `Rezervacija` (
+	`rezervacijaID` INT NOT NULL,
 	`projekcijaID` INT NOT NULL,
 	`korisnikID` INT NOT NULL,
 	`redMesta` INT NOT NULL,
-	`brojMesta` INT NOT NULL
+	`brojMesta` INT NOT NULL,
+	PRIMARY KEY (`rezervacijaID`)
 );
 
 CREATE TABLE `Komentar` (
+	`komentarID` INT NOT NULL,
 	`filmID` INT NOT NULL,
 	`korisnikID` INT NOT NULL,
-	`komentar` varchar(500) NOT NULL
+	`komentar` varchar(500) NOT NULL,
+	PRIMARY KEY (`komentarID`)
 );
 
 ALTER TABLE `Projekcija` ADD CONSTRAINT `Projekcija_fk0` FOREIGN KEY (`salaID`) REFERENCES `Sala`(`salaID`);
