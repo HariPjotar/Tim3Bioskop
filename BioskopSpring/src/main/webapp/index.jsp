@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="CSS.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Bioskop</title>
 </head>
 <body>
-
+	<p>
+		Ovo je neki tekst na glavnoj stranici.
+	</p>
 </body>
 </html>
