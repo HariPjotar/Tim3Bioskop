@@ -17,14 +17,17 @@ public class Rezervacija implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int rezervacijaID;
 
-	private int brojMesta;
-
-	private int redMesta;
+	private int brUlaznica;
 
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
 	@JoinColumn(name="korisnikID")
 	private Korisnik korisnik;
+
+	//bi-directional many-to-one association to Mesta
+	@ManyToOne
+	@JoinColumn(name="mestoID")
+	private Mesta mesta;
 
 	//bi-directional many-to-one association to Projekcija
 	@ManyToOne
@@ -42,20 +45,12 @@ public class Rezervacija implements Serializable {
 		this.rezervacijaID = rezervacijaID;
 	}
 
-	public int getBrojMesta() {
-		return this.brojMesta;
+	public int getBrUlaznica() {
+		return this.brUlaznica;
 	}
 
-	public void setBrojMesta(int brojMesta) {
-		this.brojMesta = brojMesta;
-	}
-
-	public int getRedMesta() {
-		return this.redMesta;
-	}
-
-	public void setRedMesta(int redMesta) {
-		this.redMesta = redMesta;
+	public void setBrUlaznica(int brUlaznica) {
+		this.brUlaznica = brUlaznica;
 	}
 
 	public Korisnik getKorisnik() {
@@ -64,6 +59,14 @@ public class Rezervacija implements Serializable {
 
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
+	}
+
+	public Mesta getMesta() {
+		return this.mesta;
+	}
+
+	public void setMesta(Mesta mesta) {
+		this.mesta = mesta;
 	}
 
 	public Projekcija getProjekcija() {

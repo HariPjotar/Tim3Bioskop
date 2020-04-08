@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -18,8 +17,6 @@ public class Projekcija implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int projekcijaID;
-
-	private double cena;
 
 	private String datum;
 
@@ -43,6 +40,11 @@ public class Projekcija implements Serializable {
 	@JoinColumn(name="salaID")
 	private Sala sala;
 
+	//bi-directional many-to-one association to Sifarnik
+	@ManyToOne
+	@JoinColumn(name="sifarnikID")
+	private Sifarnik sifarnik;
+
 	//bi-directional many-to-one association to Rezervacija
 	@OneToMany(mappedBy="projekcija")
 	private List<Rezervacija> rezervacijas;
@@ -56,14 +58,6 @@ public class Projekcija implements Serializable {
 
 	public void setProjekcijaID(int projekcijaID) {
 		this.projekcijaID = projekcijaID;
-	}
-
-	public double getCena() {
-		return this.cena;
-	}
-
-	public void setCena(double cena) {
-		this.cena = cena;
 	}
 
 	public String getDatum() {
@@ -136,6 +130,14 @@ public class Projekcija implements Serializable {
 		this.sala = sala;
 	}
 
+	public Sifarnik getSifarnik() {
+		return this.sifarnik;
+	}
+
+	public void setSifarnik(Sifarnik sifarnik) {
+		this.sifarnik = sifarnik;
+	}
+
 	public List<Rezervacija> getRezervacijas() {
 		return this.rezervacijas;
 	}
@@ -156,19 +158,6 @@ public class Projekcija implements Serializable {
 		rezervacija.setProjekcija(null);
 
 		return rezervacija;
-	}
-	
-	public void racunanjeCene() {
-		String tip = this.tip;
-		if (tip.equalsIgnoreCase("pretpremijera")) {
-			this.cena = 550.00;
-		}
-		if (tip.equalsIgnoreCase("premijera")) {
-			this.cena = 470.00;
-		}
-		else {
-			this.cena = 350.00;
-		}
 	}
 
 }

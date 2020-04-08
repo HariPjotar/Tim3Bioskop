@@ -19,6 +19,8 @@ public class Komentar implements Serializable {
 
 	private String komentar;
 
+	private int ocena;
+
 	//bi-directional many-to-one association to Film
 	@ManyToOne
 	@JoinColumn(name="filmID")
@@ -46,6 +48,14 @@ public class Komentar implements Serializable {
 
 	public void setKomentar(String komentar) {
 		this.komentar = komentar;
+	}
+
+	public int getOcena() {
+		return this.ocena;
+	}
+
+	public void setOcena(int ocena) {
+		this.ocena = ocena;
 	}
 
 	public Film getFilm() {

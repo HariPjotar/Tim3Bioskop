@@ -18,7 +18,7 @@ CREATE TABLE `Korisnik` (
 	`prezime` varchar(50) NOT NULL,
 	`email` varchar(100) NOT NULL UNIQUE,
 	`username` varchar(20) NOT NULL UNIQUE,
-	`password` varchar(20) NOT NULL UNIQUE,
+	`password` varchar(20) NOT NULL,
 	PRIMARY KEY (`korisnikID`)
 );
 
@@ -27,10 +27,10 @@ CREATE TABLE `Projekcija` (
 	`vreme` varchar(20) NOT NULL,
 	`tip` varchar(30) NOT NULL,
 	`datum` varchar(50) NOT NULL,
-	`cena` DECIMAL(30) NOT NULL,
 	`slobodnaMesta` INT(255) NOT NULL,
 	`salaID` INT NOT NULL,
 	`filmID` INT NOT NULL,
+	`sifarnikID` INT NOT NULL,
 	PRIMARY KEY (`projekcijaID`)
 );
 
@@ -55,31 +55,48 @@ CREATE TABLE `Radnik` (
 	`prezime` varchar(50) NOT NULL,
 	`email` varchar(100) NOT NULL UNIQUE,
 	`username` varchar(20) NOT NULL UNIQUE,
-	`password` varchar(20) NOT NULL UNIQUE,
+	`password` varchar(20) NOT NULL,
 	`admin` BOOLEAN NOT NULL,
 	PRIMARY KEY (`radnikID`)
 );
 
 CREATE TABLE `Rezervacija` (
-	`rezervacijaID` INT NOT NULL,
+	`rezervacijaID` INT NOT NULL AUTO_INCREMENT,
 	`projekcijaID` INT NOT NULL,
 	`korisnikID` INT NOT NULL,
-	`redMesta` INT NOT NULL,
-	`brojMesta` INT NOT NULL,
+	`mestoID` INT NOT NULL,
+	`brUlaznica` INT NOT NULL,
 	PRIMARY KEY (`rezervacijaID`)
 );
 
 CREATE TABLE `Komentar` (
-	`komentarID` INT NOT NULL,
+	`komentarID` INT NOT NULL AUTO_INCREMENT,
 	`filmID` INT NOT NULL,
 	`korisnikID` INT NOT NULL,
 	`komentar` varchar(500) NOT NULL,
+	`ocena` INT NOT NULL,
 	PRIMARY KEY (`komentarID`)
+);
+
+CREATE TABLE `Mesta` (
+	`mestoID` INT NOT NULL AUTO_INCREMENT,
+	`redMesta` INT NOT NULL,
+	`brojMesta` INT NOT NULL,
+	PRIMARY KEY (`mestoID`)
+);
+
+CREATE TABLE `Sifarnik` (
+	`sifarnikID` INT NOT NULL AUTO_INCREMENT,
+	`tip` varchar(30) NOT NULL,
+	`cena` DECIMAL(30) NOT NULL,
+	PRIMARY KEY (`sifarnikID`)
 );
 
 ALTER TABLE `Projekcija` ADD CONSTRAINT `Projekcija_fk0` FOREIGN KEY (`salaID`) REFERENCES `Sala`(`salaID`);
 
 ALTER TABLE `Projekcija` ADD CONSTRAINT `Projekcija_fk1` FOREIGN KEY (`filmID`) REFERENCES `Film`(`filmID`);
+
+ALTER TABLE `Projekcija` ADD CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `Sifarnik`(`sifarnikID`);
 
 ALTER TABLE `Karta` ADD CONSTRAINT `Karta_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `Projekcija`(`projekcijaID`);
 
@@ -88,6 +105,8 @@ ALTER TABLE `Karta` ADD CONSTRAINT `Karta_fk1` FOREIGN KEY (`radnikID`) REFERENC
 ALTER TABLE `Rezervacija` ADD CONSTRAINT `Rezervacija_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `Projekcija`(`projekcijaID`);
 
 ALTER TABLE `Rezervacija` ADD CONSTRAINT `Rezervacija_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `Korisnik`(`korisnikID`);
+
+ALTER TABLE `Rezervacija` ADD CONSTRAINT `Rezervacija_fk2` FOREIGN KEY (`mestoID`) REFERENCES `Mesta`(`mestoID`);
 
 ALTER TABLE `Komentar` ADD CONSTRAINT `Komentar_fk0` FOREIGN KEY (`filmID`) REFERENCES `Film`(`filmID`);
 

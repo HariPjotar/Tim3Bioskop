@@ -5,10 +5,12 @@
 		<class>model.Karta</class>
 		<class>model.Komentar</class>
 		<class>model.Korisnik</class>
+		<class>model.Mesta</class>
 		<class>model.Projekcija</class>
 		<class>model.Radnik</class>
 		<class>model.Rezervacija</class>
 		<class>model.Sala</class>
+		<class>model.Sifarnik</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pris"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
