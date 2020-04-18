@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +19,7 @@ public class Projekcija implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int projekcijaID;
 
+	@Temporal(TemporalType.DATE)
 	private Date datum;
 
 	private int slobodnaMesta;

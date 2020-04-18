@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +13,6 @@
 		Ovo je neki tekst na glavnoj stranici.
 	</p>
 	
-	<a href="/BioskopSpring/UnosFilma.jsp">Link</a>
+	<a href="/BioskopSpring/UnosFilma.jsp">Unesi novi film.</a>
 </body>
 </html>
