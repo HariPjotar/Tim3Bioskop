@@ -4,15 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="CSS.css">
 <meta charset="ISO-8859-1">
-<title>Bioskop</title>
+<title>Unos Filma</title>
 </head>
 <body>
-	<p>
-		Ovo je neki tekst na glavnoj stranici.
-	</p>
+	Ovo je neki tekst na stranici za unos filma.
 	
-	<a href="/BioskopSpring/UnosFilma.jsp">Link</a>
+	<form action ="POST">
+		
+		
+		
+	</form>
+	
 </body>
 </html>
