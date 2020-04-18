@@ -2,6 +2,8 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,11 +20,9 @@ public class Projekcija implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int projekcijaID;
 
-	private String datum;
+	private Date datum;
 
 	private int slobodnaMesta;
-
-	private String tip;
 
 	private String vreme;
 
@@ -60,11 +60,11 @@ public class Projekcija implements Serializable {
 		this.projekcijaID = projekcijaID;
 	}
 
-	public String getDatum() {
+	public Date getDatum() {
 		return this.datum;
 	}
 
-	public void setDatum(String datum) {
+	public void setDatum(Date datum) {
 		this.datum = datum;
 	}
 
@@ -74,14 +74,6 @@ public class Projekcija implements Serializable {
 
 	public void setSlobodnaMesta(int slobodnaMesta) {
 		this.slobodnaMesta = slobodnaMesta;
-	}
-
-	public String getTip() {
-		return this.tip;
-	}
-
-	public void setTip(String tip) {
-		this.tip = tip;
 	}
 
 	public String getVreme() {
