@@ -79,14 +79,23 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "/saveProjekcija", method = RequestMethod.POST)
-	public String sacuvajPredstavu(Integer film, Integer sala, Integer sifarnik, HttpServletRequest request) {
-
+	public String sacuvajProjekciju(Integer film, String datum, String vreme, Integer sala, Integer sifarnik, HttpServletRequest request) 
+			throws ParseException {
+		
+		System.out.println("Stigao sam dovde.");
+		
 		Film f = fr.findById(film).get();
 		Sala s = sr.findById(sala).get();
 		Sifarnik sif = sifR.findById(sifarnik).get();
-
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date d = format.parse(datum);
+		
 		Projekcija p = new Projekcija();
 		p.setFilm(f);
+		p.setDatum(d);
+		p.setVreme(vreme);
+		p.setSlobodnaMesta(s.getBrMesta());
 		p.setSala(s);
 		p.setSifarnik(sif);
 
@@ -95,7 +104,7 @@ public class FilmController {
 
 		return "UnosProjekcije";
 	}
-	
+
 	@RequestMapping(value = "/nedeljniRepertoar", method = RequestMethod.GET)
 	public String vratiNedeljniRepertoar(String startDate, String endDate, HttpServletRequest request) throws ParseException {
 		

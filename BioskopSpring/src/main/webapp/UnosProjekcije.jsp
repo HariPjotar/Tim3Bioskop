@@ -11,19 +11,23 @@
 <body>
 	<form action = "/BioskopSpring/filmController/saveProjekcija" method ="POST">
 	
-	<select>
+	<select name = "film">
 		<c:forEach var = "f" items = "${filmovi}">
 			<option value = "${f.filmID}"> ${f.naslov}
 		</c:forEach>
 	</select><br>
 	
-	<select>
+	Unesite datum projekcije: <input type="date" name = "datum"> <br>
+	
+	Unesite vreme projekcije: <input type = "text" name = "vreme"> <br>
+	
+	<select name = "sala">
 		<c:forEach var = "s" items = "${sale}">
 			<option value = "${s.salaID}"> ${s.ime}
 		</c:forEach>
 	</select><br>
 	
-	<select>
+	<select name = "sifarnik">
 		<c:forEach var = "sif" items = "${sifarnici}">
 			<option value = "${sif.sifarnikID}"> ${sif.tip}
 		</c:forEach>
@@ -31,7 +35,7 @@
 	
 	<input type="submit" value = "Unesi projekciju">
 	
-	<c:if test="${!empty film}">
+	<c:if test="${!empty projekcija}">
 		Uspesno je dodata projekcija.
 	</c:if>
 	</form>
