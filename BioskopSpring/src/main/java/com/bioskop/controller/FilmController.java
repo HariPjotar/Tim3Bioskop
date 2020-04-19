@@ -56,9 +56,8 @@ public class FilmController {
 		Film f = fr.save(film);
 
 		request.getSession().setAttribute("film", f);
-		request.getSession().setAttribute("message", "Uspesno ste dodali film.");
 
-		return "unosFilma";
+		return "UnosFilma";
 	}
 
 	@RequestMapping(value = "/getFilmoviSalaSifarnik", method = RequestMethod.GET)

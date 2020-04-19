@@ -30,9 +30,5 @@
 		Uspesno je dodat film.
 	</c:if>
 	
-	<c:if test="${not empty message}">
-			<p id="panel">${message}</p>
-	</c:if>
-	
 </body>
 </html>
