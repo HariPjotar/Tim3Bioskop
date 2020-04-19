@@ -1,5 +1,8 @@
 package com.bioskop.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -91,5 +94,19 @@ public class FilmController {
 		request.getSession().setAttribute("projekcija", projekcija);
 
 		return "UnosProjekcije";
+	}
+	
+	@RequestMapping(value = "/nedeljniRepertoar", method = RequestMethod.GET)
+	public String vratiNedeljniRepertoar(String startDate, String endDate, HttpServletRequest request) throws ParseException {
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		Date stDate = format.parse(startDate);
+		Date eDate = format.parse(endDate);
+		
+		List<Projekcija> projekcije = pr.vratiNedeljniRepertoar(stDate, eDate);
+		
+		request.getSession().setAttribute("proj", projekcije);
+		
+		return "PregledRepertoara";
 	}
 }
