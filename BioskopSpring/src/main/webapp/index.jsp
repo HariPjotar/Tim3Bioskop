@@ -13,6 +13,8 @@
 		Ovo je neki tekst na glavnoj stranici.
 	</p>
 	
-	<a href="/BioskopSpring/UnosFilma.jsp">Unesi novi film.</a>
+	<a href="/BioskopSpring/UnosFilma.jsp">Unesi novi film.</a> <br><br>
+	
+	<a href="/BioskopSpring/UnosProjekcije.jsp">Unesi novu projekciju.</a>
 </body>
 </html>
