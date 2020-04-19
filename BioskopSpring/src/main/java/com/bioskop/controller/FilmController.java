@@ -106,16 +106,28 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "/nedeljniRepertoar", method = RequestMethod.GET)
-	public String vratiNedeljniRepertoar(String startDate, String endDate, HttpServletRequest request) throws ParseException {
-		
+	public String vratiNedeljniRepertoar(String startDate, String endDate, HttpServletRequest request)
+			throws ParseException {
+
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date stDate = format.parse(startDate);
 		Date eDate = format.parse(endDate);
-		
+
 		List<Projekcija> projekcije = pr.vratiNedeljniRepertoar(stDate, eDate);
-		
+
 		request.getSession().setAttribute("proj", projekcije);
-		
+
 		return "PregledRepertoara";
 	}
+
+	@RequestMapping(value = "/vratiInfoFilm", method = RequestMethod.GET)
+	public String vratiInfoOFilmu(String filmid, HttpServletRequest request) {
+		
+		Integer id = Integer.parseInt(filmid);		
+		Film film = fr.findById(id).get();	
+		request.getSession().setAttribute("film", film);
+
+		return "InfoOFilmu";
+	}
+
 }
