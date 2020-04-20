@@ -21,7 +21,7 @@
 	padding: 10px;
 	background-image:
 		url("https://www.mediafire.com/convkey/5db7/1i4zwm9def619amzg.jpg?size_id=b");
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
 	background-size: 100%;
 }
 .table {
