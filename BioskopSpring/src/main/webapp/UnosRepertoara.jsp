@@ -2,19 +2,21 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<style>
+<%@ include file="Repertoar.css"%>
+</style>
 <head>
-<link rel="stylesheet" type="text/css" href="CSS.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Unos Repertoara</title>
 </head>
-<body>
+<body class = "background2">
 	
 	<form action = "/BioskopSpring/filmController/nedeljniRepertoar">
-	
-	Odaberite prvi dan<input type="date" name="startDate">
-	Odaberite poslednji dan<input type="date" name="endDate">
-	<input type="submit" value = "Odaberi">
-	
+	<div class = "format">
+	Odaberite prvi dan  <input type="date" name="startDate"><br>
+	Odaberite poslednji dan  <input type="date" name="endDate">
+	<input class = "button "type="submit" value = "Odaberi">
+	</div>
 	</form>
 </body>
 </html>

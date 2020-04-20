@@ -1,0 +1,66 @@
+.background {
+	background-image: linear-gradient(#1a1a1a, #330000) !important;
+}
+
+.background2{
+	background-color: #1a1a1a;
+}
+
+.format{
+	margin: auto;
+	padding: 50px;
+	font-family: "Courier New";
+	font-size: 200%;
+	color:  #800000;
+	
+}
+
+.center {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+	background-image:
+		url("https://www.mediafire.com/convkey/5db7/1i4zwm9def619amzg.jpg?size_id=b");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 60px;
+}
+
+.table tr {
+	color: #cc0000;
+	text-align: center;
+	vertical-align: middle;
+	height: 60px;
+}
+
+.table td {
+	color: #cc0000;
+	font-size: 200%;
+	font-family: "Courier New";
+}
+
+.button {
+  padding: 15px 25px;
+  font-size: 20px;
+  font-family: "Great Vibes", cursive;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color:#e60000;
+  background-color: #800000;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #595959}
+
+.button:active {
+  background-color: #990000;
+  box-shadow: 0 5px #330000;
+  transform: translateY(4px);
+}
