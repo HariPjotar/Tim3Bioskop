@@ -1,0 +1,44 @@
+.background {
+	background-image: linear-gradient(#1a1a1a, #330000) !important;
+}
+
+.header {
+	background: #330000;
+	width: 100%;
+}
+
+.header h1 {
+	background: #330000;
+	color: #cc0000;
+	text-transform: uppercase;
+}
+
+.table {
+	width: 60%;
+}
+
+.table td {
+	text-align: left;
+	color: #cc0000;
+}
+
+.table img {
+	height: 300px;
+	width: 206px;
+}
+
+.imageB {
+	background-image:
+		url("http://www.mediafire.com/convkey/ad97/e159gfjpekxqpmvzg.jpg");
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: 600px;
+}
+
+.imageB iframe {
+	border: none;
+	height: 300px;
+	width: 500px;
+	padding-top: 270px;
+	padding-left: 50px;
+}
