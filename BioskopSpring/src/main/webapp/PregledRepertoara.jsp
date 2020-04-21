@@ -32,6 +32,12 @@
 					<td>Datum: ${p.datum}</td>
 				</tr>
 				<tr>
+					<td>Sala: ${p.sala.ime}</td>
+				</tr>
+				<tr>
+					<td>Cena: ${p.sifarnik.cena}din</td>
+				</tr>
+				<tr>
 					<td><input class ="button" type="submit" value="Vise informacija"></td>
 				</tr>
 
