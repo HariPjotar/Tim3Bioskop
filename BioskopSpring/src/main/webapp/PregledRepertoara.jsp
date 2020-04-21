@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <style>
-<%@ include file="Repertoar.css"%>
+<%@ include file="css/Repertoar.css"%>
 </style>
 
 <head>
@@ -26,10 +26,10 @@
 					<td>${p.film.naslov} </td>
 				</tr>
 				<tr>
-					<td>${p.vreme}</td>
+					<td>Vreme: ${p.vreme}</td>
 				</tr>
 				<tr>
-					<td>${p.datum}</td>
+					<td>Datum: ${p.datum}</td>
 				</tr>
 				<tr>
 					<td><input class ="button" type="submit" value="Vise informacija"></td>

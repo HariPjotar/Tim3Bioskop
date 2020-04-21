@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <style>
-<%@ include file="filmInfo.css"%>
+<%@ include file="css/filmInfo.css"%>
 </style>
 
 <head>
