@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS `film` (
   PRIMARY KEY (`filmID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.film: ~2 rows (approximately)
+-- Dumping data for table pris.film: ~0 rows (approximately)
 /*!40000 ALTER TABLE `film` DISABLE KEYS */;
 INSERT INTO `film` (`filmID`, `naslov`, `uloge`, `zanr`, `reditelj`, `godina`, `trajanje`, `opis`, `plakat`, `trailer`) VALUES
-	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjašnjivo imun na virus, Nevil je poslednji preživeli čovek u razrušenom Njujorku, a možda i u celom svetu. Već tri godine Nevil svakodnevno šalje radio poruke, očajnički pokušavajući da pronađe ostale preživele. Ali nije sam. Nevila, možda još jedinu i najveću nadu za spas čovečanstva, pokreće samo jedna poslednja misija: da pronađe način da poništi virus pomoću sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/watch?v=dtKMEAXyPkg'),
-	(2, 'Tenet', 'John David Washington, Robert Pattinson, Elizabeth Debicki, Himesh Patel', 'Akcija, Triler', 'Christopher Nolan', 2020, '2h', 'Reč je o vrlo očekivanom i vrlo tajnovitom novom akcijskom filmu pisca i redatelja Christophera Nolana (Inception, Interstellar, Dunkirk, Batman Trilogija).', 'https://i.imgur.com/xopnR48.jpg', 'https://www.youtube.com/watch?v=LdOM0x0XDMo');
+	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjašnjivo imun na virus, Nevil je poslednji preživeli čovek u razrušenom Njujorku, a možda i u celom svetu. Već tri godine Nevil svakodnevno šalje radio poruke, očajnički pokušavajući da pronađe ostale preživele. Ali nije sam. Nevila, možda još jedinu i najveću nadu za spas čovečanstva, pokreće samo jedna poslednja misija: da pronađe način da poništi virus pomoću sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/embed/dtKMEAXyPkg'),
+	(2, 'Tenet', 'John David Washington, Robert Pattinson, Elizabeth Debicki, Himesh Patel', 'Akcija, Triler', 'Christopher Nolan', 2020, '2h', 'Reč je o vrlo očekivanom i vrlo tajnovitom novom akcijskom filmu pisca i redatelja Christophera Nolana (Inception, Interstellar, Dunkirk, Batman Trilogija).', 'https://i.imgur.com/xopnR48.jpg', 'https://www.youtube.com/embed/LdOM0x0XDMo');
 /*!40000 ALTER TABLE `film` ENABLE KEYS */;
 
 -- Dumping structure for table pris.karta
@@ -46,12 +46,12 @@ CREATE TABLE IF NOT EXISTS `karta` (
   `kartaID` int NOT NULL AUTO_INCREMENT,
   `datum` varchar(50) NOT NULL,
   `projekcijaID` int NOT NULL,
-  `radnikID` int NOT NULL,
+  `korisnikID` int NOT NULL,
   PRIMARY KEY (`kartaID`),
   KEY `Karta_fk0` (`projekcijaID`),
-  KEY `Karta_fk1` (`radnikID`),
+  KEY `Karta_fk1` (`korisnikID`),
   CONSTRAINT `Karta_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `projekcija` (`projekcijaID`),
-  CONSTRAINT `Karta_fk1` FOREIGN KEY (`radnikID`) REFERENCES `radnik` (`radnikID`)
+  CONSTRAINT `Karta_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.karta: ~0 rows (approximately)
@@ -65,7 +65,9 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `filmID` int NOT NULL,
   `korisnikID` int NOT NULL,
   `komentar` varchar(500) NOT NULL,
+  `datumKom` int NOT NULL,
   `ocena` int NOT NULL,
+  `datumOc` int NOT NULL,
   PRIMARY KEY (`komentarID`),
   KEY `Komentar_fk0` (`filmID`),
   KEY `Komentar_fk1` (`korisnikID`),
@@ -86,9 +88,12 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `email` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
+  `ulogaID` int NOT NULL,
   PRIMARY KEY (`korisnikID`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
+  UNIQUE KEY `username` (`username`),
+  KEY `Korisnik_fk0` (`ulogaID`),
+  CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaID`) REFERENCES `uloga` (`ulogaID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.korisnik: ~0 rows (approximately)
@@ -113,7 +118,7 @@ DROP TABLE IF EXISTS `projekcija`;
 CREATE TABLE IF NOT EXISTS `projekcija` (
   `projekcijaID` int NOT NULL AUTO_INCREMENT,
   `vreme` varchar(20) NOT NULL,
-  `datum` date NOT NULL,
+  `datum` varchar(50) NOT NULL,
   `slobodnaMesta` int NOT NULL,
   `salaID` int NOT NULL,
   `filmID` int NOT NULL,
@@ -127,32 +132,13 @@ CREATE TABLE IF NOT EXISTS `projekcija` (
   CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `sifarnik` (`sifarnikID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.projekcija: ~3 rows (approximately)
+-- Dumping data for table pris.projekcija: ~0 rows (approximately)
 /*!40000 ALTER TABLE `projekcija` DISABLE KEYS */;
 INSERT INTO `projekcija` (`projekcijaID`, `vreme`, `datum`, `slobodnaMesta`, `salaID`, `filmID`, `sifarnikID`) VALUES
 	(1, '20:00', '2020-07-16', 440, 1, 2, 1),
 	(2, '21:00', '2020-07-16', 163, 3, 1, 3),
 	(3, '20:00', '2020-07-17', 440, 1, 2, 2);
 /*!40000 ALTER TABLE `projekcija` ENABLE KEYS */;
-
--- Dumping structure for table pris.radnik
-DROP TABLE IF EXISTS `radnik`;
-CREATE TABLE IF NOT EXISTS `radnik` (
-  `radnikID` int NOT NULL AUTO_INCREMENT,
-  `ime` varchar(50) NOT NULL,
-  `prezime` varchar(50) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `admin` tinyint(1) NOT NULL,
-  PRIMARY KEY (`radnikID`),
-  UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
--- Dumping data for table pris.radnik: ~0 rows (approximately)
-/*!40000 ALTER TABLE `radnik` DISABLE KEYS */;
-/*!40000 ALTER TABLE `radnik` ENABLE KEYS */;
 
 -- Dumping structure for table pris.rezervacija
 DROP TABLE IF EXISTS `rezervacija`;
@@ -184,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `sala` (
   PRIMARY KEY (`salaID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.sala: ~6 rows (approximately)
+-- Dumping data for table pris.sala: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sala` DISABLE KEYS */;
 INSERT INTO `sala` (`salaID`, `ime`, `brMesta`) VALUES
 	(1, 'Don Vito Korleone', 440),
@@ -204,13 +190,26 @@ CREATE TABLE IF NOT EXISTS `sifarnik` (
   PRIMARY KEY (`sifarnikID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.sifarnik: ~3 rows (approximately)
+-- Dumping data for table pris.sifarnik: ~0 rows (approximately)
 /*!40000 ALTER TABLE `sifarnik` DISABLE KEYS */;
 INSERT INTO `sifarnik` (`sifarnikID`, `tip`, `cena`) VALUES
 	(1, 'pretpremijera', 550),
 	(2, 'premijera', 470),
 	(3, 'standardna', 350);
 /*!40000 ALTER TABLE `sifarnik` ENABLE KEYS */;
+
+-- Dumping structure for table pris.uloga
+DROP TABLE IF EXISTS `uloga`;
+CREATE TABLE IF NOT EXISTS `uloga` (
+  `ulogaID` int NOT NULL AUTO_INCREMENT,
+  `imeUloge` varchar(50) NOT NULL,
+  PRIMARY KEY (`ulogaID`),
+  UNIQUE KEY `imeUloge` (`imeUloge`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Dumping data for table pris.uloga: ~0 rows (approximately)
+/*!40000 ALTER TABLE `uloga` DISABLE KEYS */;
+/*!40000 ALTER TABLE `uloga` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
