@@ -17,6 +17,10 @@ public class Komentar implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int komentarID;
 
+	private String datumKom;
+
+	private String datumOc;
+
 	private String komentar;
 
 	private int ocena;
@@ -40,6 +44,22 @@ public class Komentar implements Serializable {
 
 	public void setKomentarID(int komentarID) {
 		this.komentarID = komentarID;
+	}
+
+	public String getDatumKom() {
+		return this.datumKom;
+	}
+
+	public void setDatumKom(String datumKom) {
+		this.datumKom = datumKom;
+	}
+
+	public String getDatumOc() {
+		return this.datumOc;
+	}
+
+	public void setDatumOc(String datumOc) {
+		this.datumOc = datumOc;
 	}
 
 	public String getKomentar() {

@@ -19,15 +19,15 @@ public class Karta implements Serializable {
 
 	private String datum;
 
+	//bi-directional many-to-one association to Korisnik
+	@ManyToOne
+	@JoinColumn(name="korisnikID")
+	private Korisnik korisnik;
+
 	//bi-directional many-to-one association to Projekcija
 	@ManyToOne
 	@JoinColumn(name="projekcijaID")
 	private Projekcija projekcija;
-
-	//bi-directional many-to-one association to Radnik
-	@ManyToOne
-	@JoinColumn(name="radnikID")
-	private Radnik radnik;
 
 	public Karta() {
 	}
@@ -48,20 +48,20 @@ public class Karta implements Serializable {
 		this.datum = datum;
 	}
 
+	public Korisnik getKorisnik() {
+		return this.korisnik;
+	}
+
+	public void setKorisnik(Korisnik korisnik) {
+		this.korisnik = korisnik;
+	}
+
 	public Projekcija getProjekcija() {
 		return this.projekcija;
 	}
 
 	public void setProjekcija(Projekcija projekcija) {
 		this.projekcija = projekcija;
-	}
-
-	public Radnik getRadnik() {
-		return this.radnik;
-	}
-
-	public void setRadnik(Radnik radnik) {
-		this.radnik = radnik;
 	}
 
 }
