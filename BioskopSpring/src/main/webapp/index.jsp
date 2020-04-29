@@ -17,6 +17,8 @@
 	
 	<a href="/BioskopSpring/filmController/getFilmoviSalaSifarnik">Unesi novu projekciju.</a> <br><br>
 	
-	<a href="/BioskopSpring/UnosRepertoara.jsp">Odaberi datume projekcija.</a>
+	<a href="/BioskopSpring/UnosRepertoara.jsp">Odaberi datume projekcija.</a><br>
+	
+	<a href="/BioskopSpring/userController/registerUser">Registracija</a>
 </body>
 </html>
