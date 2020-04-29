@@ -29,6 +29,11 @@ public class UserController {
 	@Autowired
 	UserValidator uv;
 	
+	@RequestMapping(value="loginPage", method=RequestMethod.GET) 
+	public String loginPage() {
+		return "Logovanje";
+	}
+	
 	 @RequestMapping(value = "registerUser", method = RequestMethod.GET)
 		public String newUser(Model model) {
 		Korisnik k = new Korisnik();
@@ -42,8 +47,6 @@ public class UserController {
 		uv.validate(k, bindingResult);
 		
 		
-		System.out.println("Stigao sam dovde");
-		
 		if (bindingResult.hasErrors()) {
             return "Registracija";
         }
@@ -51,12 +54,10 @@ public class UserController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		k.setPassword(passwordEncoder.encode(k.getPassword()));
 
-		Uloga u = ur.findById(1).get();
+		Uloga u = ur.findById(3).get();
 
 		k.setUloga(u);
 		u.addKorisnik(k);
-		
-		System.out.println("I dovde");
 		
 		kr.save(k);
 		

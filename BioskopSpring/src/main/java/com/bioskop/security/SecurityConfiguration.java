@@ -31,12 +31,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests()
-		.antMatchers("/", "/login", "/signup").permitAll()
+		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp").permitAll()
 		.antMatchers("/admin/**", "/UnosFilma.jsp", "/UnosProjekcije.jsp", "/UnosRepertoara.jsp")
 		.hasRole("ADMIN")
 		.antMatchers("/users/**")
 		.hasAnyRole("ADMIN", "KORISNIK")
-		.and().rememberMe()
+		.and()
+		.formLogin()
+		.loginPage("/Logovanje.jsp")
+		.loginProcessingUrl("/login")
+		.defaultSuccessUrl("/UnosRepertoara.jsp")
+		//.and()
+		//.exceptionHandling()
+		//.accessDeniedPage("")
+		.and()
+		.rememberMe()
 		.and().csrf().disable();
 
 	}
