@@ -205,10 +205,14 @@ CREATE TABLE IF NOT EXISTS `uloga` (
   `imeUloge` varchar(50) NOT NULL,
   PRIMARY KEY (`ulogaID`),
   UNIQUE KEY `imeUloge` (`imeUloge`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.uloga: ~0 rows (approximately)
 /*!40000 ALTER TABLE `uloga` DISABLE KEYS */;
+INSERT INTO `uloga` (`ulogaID`, `imeUloge`) VALUES
+	(1, 'ADMIN'),
+	(3, 'KORISNIK'),
+	(2, 'RADNIK');
 /*!40000 ALTER TABLE `uloga` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
