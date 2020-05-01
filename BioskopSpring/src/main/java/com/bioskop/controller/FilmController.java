@@ -28,7 +28,7 @@ public class FilmController {
 
 	@Autowired
 	FilmRepository fr;
-
+	
 	@Autowired
 	ProjekcijaRepository pr;
 
@@ -64,16 +64,16 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "/getFilmoviSalaSifarnik", method = RequestMethod.GET)
-	public String getFilmSalaSif(HttpServletRequest reques) {
+	public String getFilmSalaSif(HttpServletRequest request) {
 
 		List<Film> filmovi = fr.findAll();
 		List<Sala> sale = sr.findAll();
 		List<Sifarnik> sifarnici = sifR.findAll();
 
 		if (filmovi != null && sale != null && sifarnici != null) {
-			reques.getSession().setAttribute("filmovi", filmovi);
-			reques.getSession().setAttribute("sale", sale);
-			reques.getSession().setAttribute("sifarnici", sifarnici);
+			request.getSession().setAttribute("filmovi", filmovi);
+			request.getSession().setAttribute("sale", sale);
+			request.getSession().setAttribute("sifarnici", sifarnici);
 		}
 		return "UnosProjekcije";
 	}
@@ -81,8 +81,6 @@ public class FilmController {
 	@RequestMapping(value = "/saveProjekcija", method = RequestMethod.POST)
 	public String sacuvajProjekciju(Integer film, String datum, String vreme, Integer sala, Integer sifarnik, HttpServletRequest request) 
 			throws ParseException {
-		
-		System.out.println("Stigao sam dovde.");
 		
 		Film f = fr.findById(film).get();
 		Sala s = sr.findById(sala).get();
@@ -129,5 +127,23 @@ public class FilmController {
 
 		return "InfoOFilmu";
 	}
+	
+	@RequestMapping(value = "/getFilmovi", method = RequestMethod.GET) 
+	public String getFilmovi(HttpServletRequest request) {
+		List<Film> filmovi = fr.findAll();
+		request.getSession().setAttribute("filmovi", filmovi);
+		return "ProjekcijeFilmova";
+	}
+	
+	@RequestMapping(value = "/getProjekcije", method = RequestMethod.GET)
+	public String getProjekcije(Integer filmID, HttpServletRequest request) {
+		Film f = fr.findById(filmID).get();
+		List<Projekcija> projekcije = pr.findByFilm(f);
+		request.getSession().setAttribute("projekcije", projekcije);
+		return "ProjekcijeFilmova";
+	}
+	
+
+	
 
 }

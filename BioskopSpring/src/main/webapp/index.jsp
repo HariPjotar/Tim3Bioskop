@@ -21,6 +21,9 @@
 	
 	<a href="/BioskopSpring/userController/registerUser">Registracija</a><br><br>
 	
-	<a href="/BioskopSpring/userController/loginPage">Login</a>
+	<a href="/BioskopSpring/userController/loginPage">Login</a><br><br>
+	
+	<a href="/BioskopSpring/filmController/getFilmovi">Rezervacija</a><br><br> 
+	
 </body>
 </html>
