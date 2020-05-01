@@ -32,8 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests()
 		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp").permitAll()
-		.antMatchers("/admin/**", "/UnosFilma.jsp", "/UnosProjekcije.jsp", "/UnosRepertoara.jsp")
-		.hasRole("ADMIN")
+		//.antMatchers("/admin/**", "/UnosFilma.jsp", "/UnosProjekcije.jsp", "/UnosRepertoara.jsp")
+		//.hasRole("ADMIN")
 		.antMatchers("/users/**")
 		.hasAnyRole("ADMIN", "KORISNIK")
 		.and()
