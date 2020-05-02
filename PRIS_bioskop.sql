@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `film` (
   PRIMARY KEY (`filmID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.film: ~0 rows (approximately)
+-- Dumping data for table pris.film: ~2 rows (approximately)
 /*!40000 ALTER TABLE `film` DISABLE KEYS */;
 INSERT INTO `film` (`filmID`, `naslov`, `uloge`, `zanr`, `reditelj`, `godina`, `trajanje`, `opis`, `plakat`, `trailer`) VALUES
 	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjašnjivo imun na virus, Nevil je poslednji preživeli čovek u razrušenom Njujorku, a možda i u celom svetu. Već tri godine Nevil svakodnevno šalje radio poruke, očajnički pokušavajući da pronađe ostale preživele. Ali nije sam. Nevila, možda još jedinu i najveću nadu za spas čovečanstva, pokreće samo jedna poslednja misija: da pronađe način da poništi virus pomoću sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/embed/dtKMEAXyPkg'),
@@ -64,10 +64,10 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `komentarID` int NOT NULL AUTO_INCREMENT,
   `filmID` int NOT NULL,
   `korisnikID` int NOT NULL,
-  `komentar` varchar(500) NOT NULL,
-  `datumKom` int NOT NULL,
-  `ocena` int NOT NULL,
-  `datumOc` int NOT NULL,
+  `komentar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `datumKom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `datumOc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `ocena` int DEFAULT NULL,
   PRIMARY KEY (`komentarID`),
   KEY `Komentar_fk0` (`filmID`),
   KEY `Komentar_fk1` (`korisnikID`),
@@ -87,17 +87,24 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `prezime` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `ulogaID` int NOT NULL,
   PRIMARY KEY (`korisnikID`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `Korisnik_fk0` (`ulogaID`),
   CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaID`) REFERENCES `uloga` (`ulogaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.korisnik: ~0 rows (approximately)
+-- Dumping data for table pris.korisnik: ~1 rows (approximately)
 /*!40000 ALTER TABLE `korisnik` DISABLE KEYS */;
+INSERT INTO `korisnik` (`korisnikID`, `ime`, `prezime`, `email`, `username`, `password`, `ulogaID`) VALUES
+	(1, 'Admin', 'Adminovic', 'admin@gmail.com', 'admin', '12345678', 1),
+	(2, 'Vanja', 'Vulinovic', 'vanja@gmail.com', 'vanja', '12345678', 3),
+	(3, 'Aleksandra', 'Romanic', 'aleksandra@gmail.com', 'aleksandra', '12345678', 3),
+	(4, 'Petar', 'Milinkov', 'pera@gmail.com', 'pera', '12345678', 3),
+	(5, 'Ivana', 'Stojanovic', 'ivana@gmail.com', 'ivana', '12345678', 3),
+	(6, 'Radnik', 'Radovic', 'radnik@gmail.com', 'radnik', '12345678', 2);
 /*!40000 ALTER TABLE `korisnik` ENABLE KEYS */;
 
 -- Dumping structure for table pris.mesta
@@ -130,14 +137,21 @@ CREATE TABLE IF NOT EXISTS `projekcija` (
   CONSTRAINT `Projekcija_fk0` FOREIGN KEY (`salaID`) REFERENCES `sala` (`salaID`),
   CONSTRAINT `Projekcija_fk1` FOREIGN KEY (`filmID`) REFERENCES `film` (`filmID`),
   CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `sifarnik` (`sifarnikID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.projekcija: ~0 rows (approximately)
+-- Dumping data for table pris.projekcija: ~3 rows (approximately)
 /*!40000 ALTER TABLE `projekcija` DISABLE KEYS */;
 INSERT INTO `projekcija` (`projekcijaID`, `vreme`, `datum`, `slobodnaMesta`, `salaID`, `filmID`, `sifarnikID`) VALUES
 	(1, '20:00', '2020-07-16', 440, 1, 2, 1),
 	(2, '21:00', '2020-07-16', 163, 3, 1, 3),
-	(3, '20:00', '2020-07-17', 440, 1, 2, 2);
+	(3, '20:00', '2020-07-17', 440, 1, 2, 2),
+	(4, '20:00', '2020-05-07', 440, 1, 2, 1),
+	(5, '20:00', '2020-05-04', 440, 1, 2, 1),
+	(6, '21:00', '2020-05-04', 440, 1, 1, 2),
+	(7, '19:00', '2020-05-05', 163, 3, 1, 2),
+	(8, '20:00', '2020-05-05', 440, 1, 2, 2),
+	(9, '22:00', '2020-05-07', 163, 3, 1, 2),
+	(10, '20:00', '2020-05-08', 440, 1, 2, 3);
 /*!40000 ALTER TABLE `projekcija` ENABLE KEYS */;
 
 -- Dumping structure for table pris.rezervacija
@@ -170,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `sala` (
   PRIMARY KEY (`salaID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.sala: ~0 rows (approximately)
+-- Dumping data for table pris.sala: ~6 rows (approximately)
 /*!40000 ALTER TABLE `sala` DISABLE KEYS */;
 INSERT INTO `sala` (`salaID`, `ime`, `brMesta`) VALUES
 	(1, 'Don Vito Korleone', 440),
@@ -190,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `sifarnik` (
   PRIMARY KEY (`sifarnikID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.sifarnik: ~0 rows (approximately)
+-- Dumping data for table pris.sifarnik: ~3 rows (approximately)
 /*!40000 ALTER TABLE `sifarnik` DISABLE KEYS */;
 INSERT INTO `sifarnik` (`sifarnikID`, `tip`, `cena`) VALUES
 	(1, 'pretpremijera', 550),
@@ -207,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `uloga` (
   UNIQUE KEY `imeUloge` (`imeUloge`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.uloga: ~0 rows (approximately)
+-- Dumping data for table pris.uloga: ~3 rows (approximately)
 /*!40000 ALTER TABLE `uloga` DISABLE KEYS */;
 INSERT INTO `uloga` (`ulogaID`, `imeUloge`) VALUES
 	(1, 'ADMIN'),
@@ -218,4 +232,3 @@ INSERT INTO `uloga` (`ulogaID`, `imeUloge`) VALUES
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-uloga
