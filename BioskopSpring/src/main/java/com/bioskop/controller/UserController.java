@@ -1,7 +1,5 @@
 package com.bioskop.controller;
 
-import java.text.ParseException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +17,6 @@ import com.bioskop.repository.KorisnikRepository;
 import com.bioskop.repository.UlogaRepository;
 import com.bioskop.security.UserValidator;
 
-import model.Film;
-import model.Komentar;
 import model.Korisnik;
 import model.Uloga;
 
@@ -47,6 +43,15 @@ public class UserController {
 	public String loginPage() {
 		return "Logovanje";
 	}
+	
+	/*@RequestMapping(value="loginCheck", method=RequestMethod.GET)
+	public String loginCheck(String username, String password, HttpServletRequest request) {
+		Korisnik k = kr.findByUsername(username);
+		if (k == null) {
+			request.setAttribute("loginFailed", true);
+		}		
+		return "Logovanje";
+	}*/
 	
 	 @RequestMapping(value = "registerUser", method = RequestMethod.GET)
 		public String newUser(Model model) {

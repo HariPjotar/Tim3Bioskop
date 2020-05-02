@@ -40,10 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.formLogin()
 		.loginPage("/Logovanje.jsp")
 		.loginProcessingUrl("/login")
-		.defaultSuccessUrl("/UnosRepertoara.jsp")
-		//.and()
-		//.exceptionHandling()
-		//.accessDeniedPage("")
+		.defaultSuccessUrl("/filmController/nedeljniRepertoar")
+		.failureForwardUrl("/login_error.jsp")
 		.and()
 		.rememberMe()
 		.and().csrf().disable();

@@ -37,6 +37,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("username", "Duplicate.korisnik.username");
         }
         
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
         if (kr.findByEmail(k.getEmail()) != null) {
             errors.rejectValue("email", "Duplicate.korisnik.email");
         }

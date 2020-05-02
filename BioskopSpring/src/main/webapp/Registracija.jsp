@@ -4,13 +4,17 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
+<style>
+<%@ include file="css/Repertoar.css"%>
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Registracija</title>
 </head>
-<body>
+<body class = "background2">
+<div class = "center2">
 	<sf:form modelAttribute="korisnik" action="/BioskopSpring/userController/register" method="post">
-		<table>
+		<table class = "table">
 			<tr>
 				<td>Ime:</td>
 				<td><sf:input path="ime" /></td>
@@ -39,10 +43,10 @@
 			</tr>
 			<tr>
 				<td />
-				<td><input type="submit" value="Registracija">
+				<td><input class = "button" type="submit" value="Registracija">
 			</tr>
 		</table>
-	</sf:form>
+	</sf:form></div>
 
 </body>
 </html>

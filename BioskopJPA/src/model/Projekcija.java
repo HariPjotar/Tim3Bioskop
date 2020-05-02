@@ -27,7 +27,7 @@ public class Projekcija implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int projekcijaID;
 
-	private Date datum;
+	private String datum;
 
 	private int slobodnaMesta;
 
@@ -67,11 +67,11 @@ public class Projekcija implements Serializable {
 		this.projekcijaID = projekcijaID;
 	}
 
-	public Date getDatum() {
+	public String getDatum() {
 		return this.datum;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(String datum) {
 		this.datum = datum;
 	}
 

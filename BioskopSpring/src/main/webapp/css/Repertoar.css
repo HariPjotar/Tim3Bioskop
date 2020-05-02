@@ -15,6 +15,18 @@
 	
 }
 
+.center3{
+	margin: auto;
+	width: 50%;
+	padding: 100px;
+}
+
+.center2{
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+
 .center {
 	margin: auto;
 	width: 50%;
@@ -42,7 +54,12 @@
 	font-size: 200%;
 	font-family: "Courier New";
 }
-
+.p1{
+	margin: auto;
+	color: #cc0000;
+	font-size: 200%;
+	font-family: "Courier New";
+}
 .button {
   padding: 15px 25px;
   font-size: 20px;
@@ -57,10 +74,65 @@
   box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #595959}
+.button:hover {
+	background-color: #595959
+	}
 
 .button:active {
   background-color: #990000;
   box-shadow: 0 5px #330000;
   transform: translateY(4px);
 }
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px #330000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #b3b3b3;
+  font-size: 100%;
+  font-family: "Courier New";
+  color: #990000;
+}
+input[type=password], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px #330000;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #b3b3b3;
+  font-size: 100%;
+  font-family: "Courier New";
+  color: #990000;
+}
+
+a:link, a:visited {
+  background-color: #800000;
+  color:#e60000;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-family: "Great Vibes", cursive;
+  text-align: center;;
+  outline: none;
+  display: inline-block;
+  box-shadow: 0 9px #999;
+  border-radius: 15px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: #595959;
+  text-decoration: none;
+}
+
+ a:active{
+ background-color: #990000;
+  box-shadow: 0 5px #330000;
+  transform: translateY(4px);
+  text-decoration: none;
+ }

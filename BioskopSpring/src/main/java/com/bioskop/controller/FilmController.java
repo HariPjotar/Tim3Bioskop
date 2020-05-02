@@ -2,6 +2,8 @@ package com.bioskop.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -86,12 +88,9 @@ public class FilmController {
 		Sala s = sr.findById(sala).get();
 		Sifarnik sif = sifR.findById(sifarnik).get();
 		
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date d = format.parse(datum);
-		
 		Projekcija p = new Projekcija();
 		p.setFilm(f);
-		p.setDatum(d);
+		p.setDatum(datum);
 		p.setVreme(vreme);
 		p.setSlobodnaMesta(s.getBrMesta());
 		p.setSala(s);
@@ -104,14 +103,15 @@ public class FilmController {
 	}
 
 	@RequestMapping(value = "/nedeljniRepertoar", method = RequestMethod.GET)
-	public String vratiNedeljniRepertoar(String startDate, String endDate, HttpServletRequest request)
+	public String vratiNedeljniRepertoar(HttpServletRequest request)
 			throws ParseException {
-
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-		Date stDate = format.parse(startDate);
-		Date eDate = format.parse(endDate);
-
-		List<Projekcija> projekcije = pr.vratiNedeljniRepertoar(stDate, eDate);
+		
+		LocalDate stDate =LocalDate.now();
+		String startDate=stDate.toString();
+		LocalDate eDate=stDate.plusDays(7);
+		String endDate=eDate.toString();
+		
+		List<Projekcija> projekcije = pr.vratiNedeljniRepertoar(startDate, endDate);
 
 		request.getSession().setAttribute("proj", projekcije);
 
