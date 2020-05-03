@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -18,7 +19,7 @@ public class Sifarnik implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int sifarnikID;
 
-	private double cena;
+	private BigDecimal cena;
 
 	private String tip;
 
@@ -37,11 +38,11 @@ public class Sifarnik implements Serializable {
 		this.sifarnikID = sifarnikID;
 	}
 
-	public double getCena() {
+	public BigDecimal getCena() {
 		return this.cena;
 	}
 
-	public void setCena(double cena) {
+	public void setCena(BigDecimal cena) {
 		this.cena = cena;
 	}
 

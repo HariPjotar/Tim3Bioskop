@@ -36,14 +36,14 @@ public class Korisnik implements Serializable {
 	@OneToMany(mappedBy="korisnik")
 	private List<Komentar> komentars;
 
+	//bi-directional many-to-one association to Uloga
+	@ManyToOne
+	@JoinColumn(name="ulogaIdD")
+	private Uloga uloga;
+
 	//bi-directional many-to-one association to Rezervacija
 	@OneToMany(mappedBy="korisnik")
 	private List<Rezervacija> rezervacijas;
-
-	//bi-directional many-to-one association to Uloga
-	@ManyToOne
-	@JoinColumn(name="ulogaID")
-	private Uloga uloga;
 
 	public Korisnik() {
 	}
@@ -140,6 +140,14 @@ public class Korisnik implements Serializable {
 		return komentar;
 	}
 
+	public Uloga getUloga() {
+		return this.uloga;
+	}
+
+	public void setUloga(Uloga uloga) {
+		this.uloga = uloga;
+	}
+
 	public List<Rezervacija> getRezervacijas() {
 		return this.rezervacijas;
 	}
@@ -160,14 +168,6 @@ public class Korisnik implements Serializable {
 		rezervacija.setKorisnik(null);
 
 		return rezervacija;
-	}
-
-	public Uloga getUloga() {
-		return this.uloga;
-	}
-
-	public void setUloga(Uloga uloga) {
-		this.uloga = uloga;
 	}
 
 }

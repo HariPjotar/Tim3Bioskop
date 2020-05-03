@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -19,15 +20,14 @@ public class Rezervacija implements Serializable {
 
 	private int brUlaznica;
 
+	//bi-directional many-to-one association to Mesta
+	@OneToMany(mappedBy="rezervacija")
+	private List<Mesta> mestas;
+
 	//bi-directional many-to-one association to Korisnik
 	@ManyToOne
 	@JoinColumn(name="korisnikID")
 	private Korisnik korisnik;
-
-	//bi-directional many-to-one association to Mesta
-	@ManyToOne
-	@JoinColumn(name="mestoID")
-	private Mesta mesta;
 
 	//bi-directional many-to-one association to Projekcija
 	@ManyToOne
@@ -53,20 +53,34 @@ public class Rezervacija implements Serializable {
 		this.brUlaznica = brUlaznica;
 	}
 
+	public List<Mesta> getMestas() {
+		return this.mestas;
+	}
+
+	public void setMestas(List<Mesta> mestas) {
+		this.mestas = mestas;
+	}
+
+	public Mesta addMesta(Mesta mesta) {
+		getMestas().add(mesta);
+		mesta.setRezervacija(this);
+
+		return mesta;
+	}
+
+	public Mesta removeMesta(Mesta mesta) {
+		getMestas().remove(mesta);
+		mesta.setRezervacija(null);
+
+		return mesta;
+	}
+
 	public Korisnik getKorisnik() {
 		return this.korisnik;
 	}
 
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
-	}
-
-	public Mesta getMesta() {
-		return this.mesta;
-	}
-
-	public void setMesta(Mesta mesta) {
-		this.mesta = mesta;
 	}
 
 	public Projekcija getProjekcija() {

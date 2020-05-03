@@ -31,13 +31,19 @@ CREATE TABLE IF NOT EXISTS `film` (
   `plakat` varchar(255) NOT NULL,
   `trailer` varchar(255) NOT NULL,
   PRIMARY KEY (`filmID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.film: ~2 rows (approximately)
 /*!40000 ALTER TABLE `film` DISABLE KEYS */;
 INSERT INTO `film` (`filmID`, `naslov`, `uloge`, `zanr`, `reditelj`, `godina`, `trajanje`, `opis`, `plakat`, `trailer`) VALUES
-	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjašnjivo imun na virus, Nevil je poslednji preživeli čovek u razrušenom Njujorku, a možda i u celom svetu. Već tri godine Nevil svakodnevno šalje radio poruke, očajnički pokušavajući da pronađe ostale preživele. Ali nije sam. Nevila, možda još jedinu i najveću nadu za spas čovečanstva, pokreće samo jedna poslednja misija: da pronađe način da poništi virus pomoću sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/embed/dtKMEAXyPkg'),
-	(2, 'Tenet', 'John David Washington, Robert Pattinson, Elizabeth Debicki, Himesh Patel', 'Akcija, Triler', 'Christopher Nolan', 2020, '2h', 'Reč je o vrlo očekivanom i vrlo tajnovitom novom akcijskom filmu pisca i redatelja Christophera Nolana (Inception, Interstellar, Dunkirk, Batman Trilogija).', 'https://i.imgur.com/xopnR48.jpg', 'https://www.youtube.com/embed/LdOM0x0XDMo');
+	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjasnjivo imun na virus, Nevil je poslednji preziveli covek u razrusenom Njujorku, a mozda i u celom svetu. Vec tri godine Nevil svakodnevno salje radio poruke, ocajnicki pokusavajuci da pronadje ostale prezivele. Ali nije sam. Nevila, mozda jos jedinu i najvecu nadu za spas covecanstva, pokrece samo jedna poslednja misija: da pronadje nacin da ponisti virus pomocu sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/embed/dtKMEAXyPkg'),
+	(2, 'Tenet', 'John David Washington, Robert Pattinson, Elizabeth Debicki, Himesh Patel', 'Akcija, Triler', 'Christopher Nolan', 2020, '2h', 'Rec je o vrlo ocekivanom i vrlo tajnovitom novom akcijskom filmu pisca i redatelja Christophera Nolana (Inception, Interstellar, Dunkirk, Batman Trilogija).', 'https://i.imgur.com/xopnR48.jpg', 'https://www.youtube.com/embed/LdOM0x0XDMo'),
+	(3, '12 Angry Men', 'Henry Fonda, Lee J. Cobb, Martin Balsam', 'Drama', 'Sidney Lumet', 1957, '1h 36min', '12 gnevnih ljudi (eng. 12 Angry Men) je film Sidneyja Lumeta iz 1957. temeljen na istoimenoj drami o članu porote koji mora uveriti ostalih 11 članova kako moraju osloboditi osumnjičenog na temelju opravdane sumnje. Film je poznat jer je za snimanje korištena samo jedna prostorija (soba za porotnike), izuzev kratkog prikaza sudnice i toaleta.', 'https://upload.wikimedia.org/wikipedia/commons/b/b5/12_Angry_Men_%281957_film_poster%29.jpg', 'https://www.youtube.com/embed/_13J_9B5jEk'),
+	(4, 'The Godfather', 'Marlon Brando, Al Pacino, James Caan', 'Krimi, Drama', 'Francis Ford Coppola', 1972, '2h 55min', 'Kriminalisticka drama Francis-a Ford-a Coppol-e utemeljena na istoimenom romanu Maria Puza. Radnja filma proteze se na deset godina od kraja 1945. do 1955. i predstavlja hronologiju mafijaske familije Corleone.', 'https://i.imgur.com/f4FPQLO.jpg', 'https://www.youtube.com/embed/sY1S34973zA'),
+	(5, 'Shrek', 'Mike Myers, Eddie Murphy, Cameron Diaz', 'Animirani, Avantura, Komedija', 'Andrew Adamson, Vicky Jenson', 2001, '1h 30m', 'Dobar film.', 'https://m.media-amazon.com/images/M/MV5BOGZhM2FhNTItODAzNi00YjA0LWEyN2UtNjJlYWQzYzU1MDg5L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UY1200_CR88,0,630,1200_AL_.jpg', 'https://www.youtube.com/embed/CwXOrWvPBPk'),
+	(6, 'Shrek 2', 'Mike Myers, Eddie Murphy, Cameron Diaz', 'Animirani, Avantura, Komedija', 'Andrew Adamson, Kelly Asbury', 2004, '1h 33min', 'Nastavak filma Srek iz 2001. godine.', 'https://upload.wikimedia.org/wikipedia/sr/b/b9/Shrek_2_poster.jpg', 'https://www.youtube.com/embed/V6X5ti4YlG8'),
+	(7, 'Once Upon a Time in Hollywood', ' Leonardo DiCaprio, Brad Pitt, Margot Robbie', 'Komedija, Drama', 'Quentin Tarantino', 2019, '2h 40min', 'Radnja je smestena u Los Andjeles 1969. godine, u sam bum hipi Holivuda. Glavni junaci su Rik Dalton (Leonardo DiCaprio), bivsa zvezda popularnog televizijskog vesterna, bez samopouzdanja i sa alkoholicarskim navikama, kome karijera ide silaznom putanjom i Klif But (Brad Pitt), njegov dugogodisnji kaskader i asistent.', 'https://filmskerecenzije.com/once-upon-a-time-in-hollywood-2019/', 'https://www.youtube.com/embed/ELeMaP8EPAA'),
+	(8, 'The Shawshank Redemption', 'Tim Robbins, Morgan Freeman, Bob Gunton ', 'Drama', 'Frank Darabont', 1994, '2h 22min', 'Bekstvo iz Sosenka prati zivot mladog bankara Endija Dufresnija (Tim Robbins) koji je osudjen na dozivotnu robiju zbog ubistva svoje zene i njenog ljubavnika, uprkos tome sto on tvrdi da nije upleten u zlocin.', 'https://images-na.ssl-images-amazon.com/images/I/416WKnrpx5L._AC_.jpg', 'https://www.youtube.com/embed/4uu-eWVhj3M');
 /*!40000 ALTER TABLE `film` ENABLE KEYS */;
 
 -- Dumping structure for table pris.karta
@@ -64,10 +70,10 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   `komentarID` int NOT NULL AUTO_INCREMENT,
   `filmID` int NOT NULL,
   `korisnikID` int NOT NULL,
-  `komentar` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `datumKom` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `datumOc` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `komentar` varchar(500) DEFAULT NULL,
+  `datumKom` varchar(255) DEFAULT NULL,
   `ocena` int DEFAULT NULL,
+  `datumOc` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`komentarID`),
   KEY `Komentar_fk0` (`filmID`),
   KEY `Komentar_fk1` (`korisnikID`),
@@ -87,24 +93,17 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   `prezime` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `ulogaID` int NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `ulogaIdD` int NOT NULL,
   PRIMARY KEY (`korisnikID`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
-  KEY `Korisnik_fk0` (`ulogaID`),
-  CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaID`) REFERENCES `uloga` (`ulogaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `Korisnik_fk0` (`ulogaIdD`),
+  CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaIdD`) REFERENCES `uloga` (`ulogaID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.korisnik: ~1 rows (approximately)
+-- Dumping data for table pris.korisnik: ~6 rows (approximately)
 /*!40000 ALTER TABLE `korisnik` DISABLE KEYS */;
-INSERT INTO `korisnik` (`korisnikID`, `ime`, `prezime`, `email`, `username`, `password`, `ulogaID`) VALUES
-	(1, 'Admin', 'Adminovic', 'admin@gmail.com', 'admin', '12345678', 1),
-	(2, 'Vanja', 'Vulinovic', 'vanja@gmail.com', 'vanja', '12345678', 3),
-	(3, 'Aleksandra', 'Romanic', 'aleksandra@gmail.com', 'aleksandra', '12345678', 3),
-	(4, 'Petar', 'Milinkov', 'pera@gmail.com', 'pera', '12345678', 3),
-	(5, 'Ivana', 'Stojanovic', 'ivana@gmail.com', 'ivana', '12345678', 3),
-	(6, 'Radnik', 'Radovic', 'radnik@gmail.com', 'radnik', '12345678', 2);
 /*!40000 ALTER TABLE `korisnik` ENABLE KEYS */;
 
 -- Dumping structure for table pris.mesta
@@ -113,7 +112,10 @@ CREATE TABLE IF NOT EXISTS `mesta` (
   `mestoID` int NOT NULL AUTO_INCREMENT,
   `redMesta` int NOT NULL,
   `brojMesta` int NOT NULL,
-  PRIMARY KEY (`mestoID`)
+  `rezervacijaID` int NOT NULL,
+  PRIMARY KEY (`mestoID`),
+  KEY `Mesta_fk0` (`rezervacijaID`),
+  CONSTRAINT `Mesta_fk0` FOREIGN KEY (`rezervacijaID`) REFERENCES `rezervacija` (`rezervacijaID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.mesta: ~0 rows (approximately)
@@ -137,21 +139,37 @@ CREATE TABLE IF NOT EXISTS `projekcija` (
   CONSTRAINT `Projekcija_fk0` FOREIGN KEY (`salaID`) REFERENCES `sala` (`salaID`),
   CONSTRAINT `Projekcija_fk1` FOREIGN KEY (`filmID`) REFERENCES `film` (`filmID`),
   CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `sifarnik` (`sifarnikID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.projekcija: ~3 rows (approximately)
+-- Dumping data for table pris.projekcija: ~10 rows (approximately)
 /*!40000 ALTER TABLE `projekcija` DISABLE KEYS */;
 INSERT INTO `projekcija` (`projekcijaID`, `vreme`, `datum`, `slobodnaMesta`, `salaID`, `filmID`, `sifarnikID`) VALUES
-	(1, '20:00', '2020-07-16', 440, 1, 2, 1),
-	(2, '21:00', '2020-07-16', 163, 3, 1, 3),
-	(3, '20:00', '2020-07-17', 440, 1, 2, 2),
-	(4, '20:00', '2020-05-07', 440, 1, 2, 1),
-	(5, '20:00', '2020-05-04', 440, 1, 2, 1),
-	(6, '21:00', '2020-05-04', 440, 1, 1, 2),
-	(7, '19:00', '2020-05-05', 163, 3, 1, 2),
-	(8, '20:00', '2020-05-05', 440, 1, 2, 2),
-	(9, '22:00', '2020-05-07', 163, 3, 1, 2),
-	(10, '20:00', '2020-05-08', 440, 1, 2, 3);
+	(1, '20:00', '2020-05-05', 440, 1, 1, 1),
+	(2, '20:00', '2020-05-06', 440, 1, 1, 2),
+	(3, '20:30', '2020-05-07', 70, 2, 1, 3),
+	(4, '19:00', '2020-05-09', 70, 4, 1, 3),
+	(5, '20:00', '2020-05-11', 160, 3, 1, 3),
+	(6, '20:00', '2020-05-13', 70, 2, 1, 3),
+	(7, '20:00', '2020-05-13', 440, 1, 2, 1),
+	(8, '20:00', '2020-05-14', 440, 1, 2, 2),
+	(9, '20:30', '2020-05-15', 160, 3, 2, 3),
+	(10, '19:00', '2020-05-06', 440, 1, 3, 3),
+	(11, '19:00', '2020-05-14', 70, 6, 3, 3),
+	(12, '20:00', '2020-05-16', 70, 6, 3, 3),
+	(13, '20:30', '2020-05-06', 70, 2, 4, 3),
+	(14, '20:30', '2020-05-10', 440, 1, 4, 3),
+	(15, '16:00', '2020-05-11', 70, 6, 5, 3),
+	(16, '16:00', '2020-05-12', 70, 6, 5, 3),
+	(17, '16:00', '2020-05-13', 70, 6, 5, 3),
+	(18, '18:00', '2020-05-11', 70, 6, 6, 3),
+	(19, '18:00', '2020-05-12', 70, 6, 6, 3),
+	(20, '18:00', '2020-05-13', 70, 6, 6, 3),
+	(21, '20:30', '2020-05-14', 440, 1, 7, 1),
+	(22, '20:00', '2020-05-15', 440, 1, 7, 2),
+	(23, '20:00', '2020-05-16', 70, 4, 7, 3),
+	(24, '19:00', '2020-05-10', 160, 5, 8, 3),
+	(25, '18:00', '2020-05-11', 160, 5, 8, 3),
+	(26, '19:00', '2020-05-13', 70, 6, 8, 3);
 /*!40000 ALTER TABLE `projekcija` ENABLE KEYS */;
 
 -- Dumping structure for table pris.rezervacija
@@ -160,15 +178,12 @@ CREATE TABLE IF NOT EXISTS `rezervacija` (
   `rezervacijaID` int NOT NULL AUTO_INCREMENT,
   `projekcijaID` int NOT NULL,
   `korisnikID` int NOT NULL,
-  `mestoID` int NOT NULL,
   `brUlaznica` int NOT NULL,
   PRIMARY KEY (`rezervacijaID`),
   KEY `Rezervacija_fk0` (`projekcijaID`),
   KEY `Rezervacija_fk1` (`korisnikID`),
-  KEY `Rezervacija_fk2` (`mestoID`),
   CONSTRAINT `Rezervacija_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `projekcija` (`projekcijaID`),
-  CONSTRAINT `Rezervacija_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`),
-  CONSTRAINT `Rezervacija_fk2` FOREIGN KEY (`mestoID`) REFERENCES `mesta` (`mestoID`)
+  CONSTRAINT `Rezervacija_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.rezervacija: ~0 rows (approximately)
@@ -188,11 +203,11 @@ CREATE TABLE IF NOT EXISTS `sala` (
 /*!40000 ALTER TABLE `sala` DISABLE KEYS */;
 INSERT INTO `sala` (`salaID`, `ime`, `brMesta`) VALUES
 	(1, 'Don Vito Korleone', 440),
-	(2, 'Jack Torrence', 71),
-	(3, 'John McClane', 163),
-	(4, 'Joker', 71),
-	(5, 'Amélie', 163),
-	(6, 'Mulan', 71);
+	(2, 'Jack Torrence', 70),
+	(3, 'John McClane', 160),
+	(4, 'Joker', 70),
+	(5, 'Amélie', 160),
+	(6, 'Mulan', 70);
 /*!40000 ALTER TABLE `sala` ENABLE KEYS */;
 
 -- Dumping structure for table pris.sifarnik

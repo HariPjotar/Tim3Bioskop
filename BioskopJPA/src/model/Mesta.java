@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -23,8 +22,9 @@ public class Mesta implements Serializable {
 	private int redMesta;
 
 	//bi-directional many-to-one association to Rezervacija
-	@OneToMany(mappedBy="mesta")
-	private List<Rezervacija> rezervacijas;
+	@ManyToOne
+	@JoinColumn(name="rezervacijaID")
+	private Rezervacija rezervacija;
 
 	public Mesta() {
 	}
@@ -53,26 +53,12 @@ public class Mesta implements Serializable {
 		this.redMesta = redMesta;
 	}
 
-	public List<Rezervacija> getRezervacijas() {
-		return this.rezervacijas;
+	public Rezervacija getRezervacija() {
+		return this.rezervacija;
 	}
 
-	public void setRezervacijas(List<Rezervacija> rezervacijas) {
-		this.rezervacijas = rezervacijas;
-	}
-
-	public Rezervacija addRezervacija(Rezervacija rezervacija) {
-		getRezervacijas().add(rezervacija);
-		rezervacija.setMesta(this);
-
-		return rezervacija;
-	}
-
-	public Rezervacija removeRezervacija(Rezervacija rezervacija) {
-		getRezervacijas().remove(rezervacija);
-		rezervacija.setMesta(null);
-
-		return rezervacija;
+	public void setRezervacija(Rezervacija rezervacija) {
+		this.rezervacija = rezervacija;
 	}
 
 }
