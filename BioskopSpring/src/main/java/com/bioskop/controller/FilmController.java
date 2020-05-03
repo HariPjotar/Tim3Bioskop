@@ -1,10 +1,7 @@
 package com.bioskop.controller;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bioskop.repository.FilmRepository;
+import com.bioskop.repository.KomentarRepository;
 import com.bioskop.repository.ProjekcijaRepository;
 import com.bioskop.repository.SalaRepository;
 import com.bioskop.repository.SifarnikRepository;
 
 import model.Film;
+import model.Komentar;
 import model.Projekcija;
 import model.Sala;
 import model.Sifarnik;
@@ -39,6 +38,9 @@ public class FilmController {
 
 	@Autowired
 	SifarnikRepository sifR;
+	
+	@Autowired
+	KomentarRepository komR;
 
 	@RequestMapping(value = "/saveFilm", method = RequestMethod.POST)
 	public String sacuvajFilm(String naslov, String uloge, String zanr, String reditelj, String godina, String trajanje,
@@ -123,8 +125,31 @@ public class FilmController {
 		
 		Integer id = Integer.parseInt(filmid);		
 		Film film = fr.findById(id).get();	
+		List<Komentar> komentari = komR.findByFilm(film);
 		request.getSession().setAttribute("film", film);
-
+		request.getSession().setAttribute("komentari", komentari);
+		
+		int brojOcena = 0;
+		double prosek = 0.0;
+		
+		for(Komentar k : komentari) {
+			if(k.getOcena() > 0) {
+				prosek += k.getOcena();
+				brojOcena += 1;
+			}
+		}
+		
+		String temp = "Film jos nema ocena.";
+		
+		if(brojOcena > 0) {
+			prosek = prosek/brojOcena;
+			double factor = Math.pow(10, 2);
+            prosek = Math.round(prosek * factor) / factor;
+			request.getSession().setAttribute("prosek", prosek);
+		}else {
+			request.getSession().setAttribute("prosek", temp);
+		}
+		
 		return "InfoOFilmu";
 	}
 	

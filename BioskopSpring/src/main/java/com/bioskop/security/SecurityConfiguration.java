@@ -31,13 +31,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	//naknadno dodati radnika
 	@Override
 	public void configure(HttpSecurity security) throws Exception {
-		security.authorizeRequests()
+		security.formLogin()
 		//.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp", "/InfoOFilmu.jsp").permitAll()
 		//.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp", "/UnosRepertoara.jsp").hasRole("ADMIN")
 		//.antMatchers("/InfoOFilmu.jsp", "/PregledRepertoara.jsp").hasRole("KORISNIK") //dodati dozvole za rezervacije i komentare kad se naprave
 		//.antMatchers(HttpMethod.POST,"/InfoOFilmu.jsp").hasRole("KORISNIK") //dozvoljava samo korisniku da postuje na infoofilmu
-		.and()
-		.formLogin()
 		.loginPage("/Logovanje.jsp")
 		.loginProcessingUrl("/login")
 		.defaultSuccessUrl("/filmController/nedeljniRepertoar")

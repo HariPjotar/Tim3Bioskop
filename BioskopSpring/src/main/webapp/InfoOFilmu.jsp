@@ -5,9 +5,6 @@
 <html>
 <style>
 <%@include file ="css/filmInfo.css"%>
-h3 {
-	text-align: center
-}
 </style>
 
 <head>
@@ -15,10 +12,13 @@ h3 {
 <title>${film.naslov }</title>
 </head>
 <body class="background">
+
 	<div class="header">
 		<h1>${film.naslov }</h1>
 	</div>
-
+	<div class="prosecnaOcena">Prosecna ocena: ${prosek}</div>
+	<br>
+	
 	<table class="table">
 
 		<tr>
@@ -58,9 +58,9 @@ h3 {
 	<br>
 	<br>
 
-	<form action = "/BioskopSpring/UserController/saveKomentar" method ="POST">
-		<div class="komentarDiv1">
-			<div class="header">
+	<form action = "/BioskopSpring/userController/saveKomentar" method ="POST">
+		<div class="komentarDiv">
+			<div class="header2">
 				<h4>KOMENTARI I OCENE:</h4>
 			</div>
 			<div class="komentarDiv2">
@@ -92,6 +92,9 @@ h3 {
 						</tr>
 					</table>
 					<input type="submit" value="Postavi komentar i ocenu"> <br>
+					<c:if test="${!empty komentar}">
+						<div style = "color: white">Uspesno je dodat komentar.</div>
+					</c:if>
 					<br>
 				</fieldset>
 			</div>
@@ -99,15 +102,17 @@ h3 {
 			<div class="komentarDiv2">
 				<fieldset>
 					<legend style="color: white">Recenzije</legend>
+					<c:forEach items="${komentari}" var="k">
+						<fieldset>
+							<legend style="color: white">${k.getKorisnik().getUsername()}, ${k.getDatumKom()}, ocenio/la je film sa: ${k.getOcena()}/5.</legend>
+							<div style = "color: white">${k.getKomentar()}</div>
+						</fieldset>
+					</c:forEach>
 				</fieldset>
 			</div>
 		</div>
 		<input type="hidden" name="filmid" value = "${film.filmID }">
 	</form>
-	
-	<c:if test="${!empty komentar}">
-		Uspesno je dodat komentar.
-	</c:if>
 	
 </body>
 </html>
