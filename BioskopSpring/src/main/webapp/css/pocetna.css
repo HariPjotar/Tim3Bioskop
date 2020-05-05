@@ -1,0 +1,49 @@
+.background {
+	background-color: #1a1a1a;
+}
+
+.header {
+	text-align: center;
+	background: #330000;
+	color: #cc0000;
+	text-transform: uppercase;
+	font-size: 200%;
+}
+
+.buttons a {	
+	padding: 15px 25px;
+	font-size: 20px;
+	font-family: "Great Vibes", cursive;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #e60000;
+	background-color: #800000;
+	border: none;
+	border-radius: 15px;
+	box-shadow: 0 9px #999;
+}
+
+.buttons a:hover {
+	background-color: #595959;
+	text-decoration: none;
+}
+
+.center {
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+}
+
+p {
+	text-align: center;
+	margin: auto;
+	color: #cc0000;
+	font-size: 200%;
+	font-family: "Courier New";
+}
+
+h2 {
+	text-align: center;
+	color: #cc0000;
+}

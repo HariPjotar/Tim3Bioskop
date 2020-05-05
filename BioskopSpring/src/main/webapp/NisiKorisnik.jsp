@@ -3,15 +3,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
+<style>
+<%@include file ="css/pocetna.css"%>
+</style>
 <head>
 <meta charset="ISO-8859-1">
-<title>Niste registrovani korisnik!</title>
+<title>Niste ulogovani!</title>
 </head>
-<body style = "background-color: grey">
-	<div style = "color: red"><h2 style = "text-align: center">Niste registrovan korisnik!</h2></div>
-	<div style = "text-align: center">Molimo vas da se registrujete <a href="/BioskopSpring/userController/registerUser">ovde.</a></div>
-	<br>
-	<div style = "text-align: center"><a href="/BioskopSpring">Povratak na glavnu stranicu.</a></div>
+<body class = "background">
+	<div class="header">Niste ulogovani!</div>
+	<br><br><br>
+	<div class="center">
+		<div class = "buttons">
+			<p>Morate biti ulogovani da bi pristupili ovoj stranici!</p>
+			<br><br><br>
+			<a href="/BioskopSpring/userController/loginPage">Login</a>
+			<br><br><br>	
+			<p>Nemate nalog? <a href="/BioskopSpring/userController/registerUser">Registrujte se</a></p>
+			<br><br><br>
+			<a href="/BioskopSpring">Povratak na glavnu stranicu.</a>
+			<br><br><br>
+			<p>Ukoliko ste ulogovani, a vidite ovu poruku, nemate pravo pristupa ovoj stanici!</p>
+		</div>
+	</div>
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.bioskop.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,18 +27,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(service);
 	}
 
-	//naknadno dodati radnika
+	//naknadno dodati radnika i pregled profita
 	@Override
 	public void configure(HttpSecurity security) throws Exception {
-		security.formLogin()
-		//.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp", "/InfoOFilmu.jsp").permitAll()
-		//.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp", "/UnosRepertoara.jsp").hasRole("ADMIN")
-		//.antMatchers("/InfoOFilmu.jsp", "/PregledRepertoara.jsp").hasRole("KORISNIK") //dodati dozvole za rezervacije i komentare kad se naprave
-		//.antMatchers(HttpMethod.POST,"/InfoOFilmu.jsp").hasRole("KORISNIK") //dozvoljava samo korisniku da postuje na infoofilmu
+		security.authorizeRequests()
+		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp", "/InfoOFilmu.jsp", "/NajboljeOcenjeniFilmovi.jsp").permitAll()
+		.antMatchers("/pocetna.jsp").hasAnyRole("ADMIN", "KORISNIK")
+		.antMatchers("/ProjekcijeFilmova.jsp", "/SlobodnaMestaUSali.jsp", "/InfoORezervaciji.jsp").hasRole("KORISNIK")
+		.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp").hasRole("ADMIN")
+		.and()
+		.formLogin()
 		.loginPage("/Logovanje.jsp")
 		.loginProcessingUrl("/login")
-		.defaultSuccessUrl("/filmController/nedeljniRepertoar")
+		.defaultSuccessUrl("/pocetna.jsp")
 		.failureForwardUrl("/login_error.jsp")
+		.and().exceptionHandling().accessDeniedPage("/NisiKorisnik.jsp")
 		.and().csrf().disable();
 
 	}

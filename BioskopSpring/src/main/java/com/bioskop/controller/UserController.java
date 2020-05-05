@@ -82,7 +82,7 @@ public class UserController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		k.setPassword(passwordEncoder.encode(k.getPassword()));
 
-		Uloga u = ur.findById(3).get();
+		Uloga u = ur.findById(1).get();
 
 		k.setUloga(u);
 		u.addKorisnik(k);
