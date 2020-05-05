@@ -93,5 +93,5 @@ public class Komentar implements Serializable {
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
 	}
-
+	
 }

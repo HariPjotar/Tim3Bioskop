@@ -2,6 +2,7 @@ package com.bioskop.controller;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -258,5 +259,51 @@ public class FilmController {
 		}
 		//int brojSlobodnihMesta = p.getSlobodnaMesta() - mesta.length;
 	}
-
+	
+	@RequestMapping(value = "/getNajboljeOcenjeniFilmovi", method = RequestMethod.GET)
+	public String getNajboljeOcenjeniFilmovi(HttpServletRequest request) {
+		
+		LocalDate datum1 = LocalDate.now();
+		String datum2 = datum1.toString();
+		LocalDate datum3 = datum1.minusDays(30);
+		String datum4 = datum3.toString();
+		
+		List<Film> filmovi = fr.vratiFilmoveMesecDana(datum2, datum4);
+		List<Film> filmoviFinal = new ArrayList<Film>();
+		
+		double[] konacneOcene = new double[10];
+		int rbrOcene = 0;
+		
+		int brOcena = 0;
+		double prosecnaOcena = 0.0;
+		
+		for(Film f : filmovi) {
+			System.out.println(f.getNaslov());
+			for(Komentar k : f.getKomentars()) {
+				if(k.getOcena() > 0) {
+					prosecnaOcena += k.getOcena();
+					brOcena += 1;
+				}
+			}
+			double factor = Math.pow(10, 2);
+			prosecnaOcena = prosecnaOcena/brOcena;
+            prosecnaOcena = Math.round(prosecnaOcena * factor) / factor;
+            prosecnaOcena = (double) prosecnaOcena;
+            
+            if(prosecnaOcena >= 4.5) {  //Ako treba da se promeni kriterijum za sta e podrazumeva pod "dobro ocenjen film", samo promeni ovo 4.5
+            	filmoviFinal.add(f);
+            	konacneOcene[rbrOcene] = prosecnaOcena;
+            	rbrOcene++;
+            }
+			prosecnaOcena = 0.0;
+			brOcena = 0;
+		}
+		
+		
+		request.getSession().setAttribute("konacneOcene", konacneOcene);
+		request.getSession().setAttribute("ocenjeniFilmovi", filmoviFinal);
+		
+		return "NajboljeOcenjeniFilmovi";
+	}
+	
 }

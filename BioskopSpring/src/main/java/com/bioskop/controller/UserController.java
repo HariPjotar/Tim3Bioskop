@@ -96,8 +96,6 @@ public class UserController {
 	@RequestMapping(value = "saveKomentar", method = RequestMethod.POST)
 	public String sacuvajKomentar(Integer filmid, String komentar, String ocena, HttpServletRequest request){
 		
-		System.out.print(ocena);
-		
 		Film f = fr.findById(filmid).get();
 		Korisnik k = us.getUserFromSession();
 		Komentar kom = new Komentar();
@@ -133,8 +131,6 @@ public class UserController {
 
 		Komentar komm = komr.save(kom);
 		request.getSession().setAttribute("komentar", komm);
-		
-		System.out.println("Uspesno je dodat komentar.");
 		
 		return "InfoOFilmu";
 	}

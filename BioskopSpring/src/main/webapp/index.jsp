@@ -19,6 +19,8 @@
 	
 	<a href="/BioskopSpring/filmController/nedeljniRepertoar">Nedeljni repertoar.</a><br><br>
 	
+	<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">Najbolje ocenjeni filmovi u prethodnih mesec dana.</a><br><br>
+	
 	<a href="/BioskopSpring/userController/registerUser">Registracija</a><br><br>
 	
 	<a href="/BioskopSpring/userController/loginPage">Login</a><br><br>
