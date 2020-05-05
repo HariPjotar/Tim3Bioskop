@@ -1,7 +1,6 @@
 package com.bioskop.controller;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -53,15 +52,6 @@ public class UserController {
 		return "Logovanje";
 	}
 	
-	/*@RequestMapping(value="loginCheck", method=RequestMethod.GET)
-	public String loginCheck(String username, String password, HttpServletRequest request) {
-		Korisnik k = kr.findByUsername(username);
-		if (k == null) {
-			request.setAttribute("loginFailed", true);
-		}		
-		return "Logovanje";
-	}*/
-	
 	 @RequestMapping(value = "registerUser", method = RequestMethod.GET)
 		public String newUser(Model model) {
 		Korisnik k = new Korisnik();
@@ -82,7 +72,7 @@ public class UserController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		k.setPassword(passwordEncoder.encode(k.getPassword()));
 
-		Uloga u = ur.findById(1).get();
+		Uloga u = ur.findById(3).get();
 
 		k.setUloga(u);
 		u.addKorisnik(k);

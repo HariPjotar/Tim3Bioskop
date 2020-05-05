@@ -41,6 +41,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.loginProcessingUrl("/login")
 		.defaultSuccessUrl("/pocetna.jsp")
 		.failureForwardUrl("/login_error.jsp")
+		.and()
+		.logout()
+		.invalidateHttpSession(true)
+		.logoutSuccessUrl("/")
 		.and().exceptionHandling().accessDeniedPage("/NisiKorisnik.jsp")
 		.and().csrf().disable();
 

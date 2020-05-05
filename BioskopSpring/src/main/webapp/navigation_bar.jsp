@@ -20,7 +20,7 @@
 			<a href="/BioskopSpring/UnosFilma.jsp">Unos novog filma</a>
 			<a href="/BioskopSpring/filmController/getFilmoviSalaSifarnik">Unos nove projekcije</a></li>
 		</s:authorize>
-		
+			<a href="/BioskopSpring/logout">LOG OUT</a>
 	</div>
 	<br><br><br>
 </body>
