@@ -16,8 +16,11 @@
 			<c:forEach var="i" begin="1" end="${brojRedova}">
 				<tr>
 					<th>Red ${i}</th>
-					<!--<td><input type="checkbox" name="mesto"></td>-->
+				
 					<c:forEach var="j" begin="1" end="${brojKolona}">
+						<!--<c:forEach var = "k" items="">
+							<c:if test="${k[i] = i}"></c:if>
+							</c:forEach>-->
 						<td><input type="checkbox" name ="mesto" value ="${i},${j}"></td>
 					</c:forEach>
 				</tr>

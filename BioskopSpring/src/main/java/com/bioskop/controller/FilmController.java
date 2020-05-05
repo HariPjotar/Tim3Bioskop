@@ -115,6 +115,8 @@ public class FilmController {
 		p.setSifarnik(sif);
 
 		Projekcija projekcija = pr.save(p);
+		List<Rezervacija> rezervacijas = new ArrayList<Rezervacija>();
+		p.setRezervacijas(rezervacijas);
 		request.getSession().setAttribute("projekcija", projekcija);
 
 		return "UnosProjekcije";
@@ -203,6 +205,8 @@ public class FilmController {
 		request.getSession().setAttribute("brojRedova", brojRedova);
 		
 		Mesta[][] mesta = new Mesta[brojRedova][brojKolona];
+		
+		
 		request.getSession().setAttribute("mesta", mesta);
 		
 		return "SlobodnaMestaUSali";
@@ -235,6 +239,9 @@ public class FilmController {
 		r.setBrUlaznica(brojUlaznica);
 		
 		Rezervacija rez = rr.save(r);
+		
+		//List<Rezervacija> temp2 = p.getRezervacijas();
+		//temp2.add(r);
 		request.getSession().setAttribute("rezervacija", rez);
 		dodajMestaISmanjiSlobodna(rez, p, request);
 		
@@ -244,6 +251,7 @@ public class FilmController {
 	private void dodajMestaISmanjiSlobodna(Rezervacija rez, Projekcija p, HttpServletRequest request) {
 
 		String[] mesta = (String[]) request.getSession().getAttribute("mesta");
+		List<Mesta> temp = new ArrayList<Mesta>();
 		
 		for (int l = 0; l < mesta.length; l++) {
 			String[] niz = mesta[l].split(",");
@@ -253,11 +261,13 @@ public class FilmController {
 			m.setRedMesta(i);
 			m.setBrojMesta(j);
 			m.setRezervacija(rez);
+			p.setSlobodnaMesta(p.getSlobodnaMesta() - 1);
 			mr.save(m);
-
-			//rez.addMesta(m);
+			temp.add(m);
+			pr.updateMesta(p.getSlobodnaMesta(), p.getProjekcijaID());
 		}
-		//int brojSlobodnihMesta = p.getSlobodnaMesta() - mesta.length;
+		rez.setMestas(temp);
+		
 	}
 	
 	@RequestMapping(value = "/getNajboljeOcenjeniFilmovi", method = RequestMethod.GET)

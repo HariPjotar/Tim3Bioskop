@@ -17,7 +17,7 @@
 		${projekcija.sala.ime}<br>
 		${cena}
 		
-		<input type="submit" name = "Sacuvaj">
+		<input type="submit" name = "Sacuvaj" value = "Sacuvaj rezervaciju">
 		<a href="/BioskopSpring/filmController/nedeljniRepertoar"> Odustani od rezervacije </a>
 	</form>
 	
