@@ -5,10 +5,14 @@
 <%@taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
 <html>
-<body>
+<style>
+<%@ include file="css/Repertoar.css"%>
+</style>
+<body class = "background2">
+	<div class ="center2">
 	<c:url var="loginUrl" value="/login" />
 	<form action="${loginUrl}" method="post">
-		<table>
+		<table class= "table">
 			<tr>
 				<td>Username:</td>
 				<td><input type="text" name="username"></td>
@@ -20,10 +24,11 @@
 			<tr>
 				<td><input type="hidden" name="${_csrf.parameterName}"
 					value="${_csrf.token}" /></td>
-				<td><input type="submit" value="Log in"></td>
+				<td><input class = "button" type="submit" value="Log in"></td>
 			</tr>
 		</table>
-		Nemate nalog? <a href="/BioskopSpring/userController/registerUser">Registrujte se</a>
+		<p class = "p1" >Nemate nalog? <a href="/BioskopSpring/userController/registerUser">Registrujte se</a></p>
 	</form>
+	</div>
 </body>
 </html>

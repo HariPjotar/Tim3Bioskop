@@ -2,15 +2,24 @@
 	background-image: linear-gradient(#1a1a1a, #330000) !important;
 }
 
-.header {
-	background: #330000;
-	width: 100%;
-}
-
-.header h1 {
+.header{
+	text-align: center;
 	background: #330000;
 	color: #cc0000;
 	text-transform: uppercase;
+	font-size: 200%;
+}
+
+.header2{
+	text-align: center;
+	background: #330000;
+	color: #cc0000;
+	text-transform: uppercase;
+	font-size: 200%;
+}
+
+h3{
+	text-align: center
 }
 
 .table {
@@ -41,4 +50,41 @@
 	width: 500px;
 	padding-top: 270px;
 	padding-left: 50px;
+}
+
+.komentarDiv1 {
+	background-color: #303030;
+	text-align: center;
+	margin: auto;
+ 	width: 70%;
+  	border: 3px solid red;
+  	padding: 10px;
+}
+
+.komentarDiv2 {
+	background-color: #303030;
+	text-align: center;
+	margin: auto;
+ 	width: 70%;
+  	border: 3px solid red;
+  	padding: 7px;
+}
+
+.header h4 {
+	text-align: center;
+	background: #330000;
+	color: #cc3300;
+	text-transform: uppercase;
+	font-size: 200%;
+}
+
+table.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.prosecnaOcena{
+	color: white;
+	text-align: center;
+	font-size: 150%;
 }
