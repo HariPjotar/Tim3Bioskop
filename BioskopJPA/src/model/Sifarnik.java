@@ -19,7 +19,7 @@ public class Sifarnik implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int sifarnikID;
 
-	private BigDecimal cena;
+	private double cena;
 
 	private String tip;
 
@@ -38,11 +38,11 @@ public class Sifarnik implements Serializable {
 		this.sifarnikID = sifarnikID;
 	}
 
-	public BigDecimal getCena() {
+	public double getCena() {
 		return this.cena;
 	}
 
-	public void setCena(BigDecimal cena) {
+	public void setCena(double cena) {
 		this.cena = cena;
 	}
 

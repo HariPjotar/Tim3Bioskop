@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import model.Mesta;
 import model.Projekcija;
+import model.Rezervacija;
 
-public interface MestoRepository extends JpaRepository<Mesta, Integer>{
-	//public List<Mesta> findByProjekcija(Projekcija projekcija);
+public interface RezervacijaRepository extends JpaRepository<Rezervacija, Integer>{
+	
+	 
 }

@@ -1,6 +1,5 @@
 package com.bioskop.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +16,5 @@ public interface ProjekcijaRepository extends JpaRepository<Projekcija, Integer>
 
 	//@Query("SELECT p FROM Projekcija p, Film f WHERE p.film.filmID=f.filmID AND f.naslov=:nazFilma")
 	public List<Projekcija> findByFilm(Film film);
+	
 }

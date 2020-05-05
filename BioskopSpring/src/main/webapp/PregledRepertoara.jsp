@@ -39,6 +39,7 @@
 				</tr>
 				<tr>
 					<td><input class ="button" type="submit" value="Vise informacija"></td>
+					<!--<td> <button type="submit" formaction="/BioskopSpring/filmController/getMestaUSali?id=${p.projekcijaID}">Rezervisi</button></td>-->
 				</tr>
 
 			</table>

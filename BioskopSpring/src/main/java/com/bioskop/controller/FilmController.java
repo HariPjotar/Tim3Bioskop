@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bioskop.repository.FilmRepository;
 import com.bioskop.repository.KomentarRepository;
+import com.bioskop.repository.MestoRepository;
 import com.bioskop.repository.ProjekcijaRepository;
+import com.bioskop.repository.RezervacijaRepository;
 import com.bioskop.repository.SalaRepository;
 import com.bioskop.repository.SifarnikRepository;
+import com.bioskop.security.UserService;
 
 import model.Film;
 import model.Komentar;
+import model.Korisnik;
+import model.Mesta;
 import model.Projekcija;
+import model.Rezervacija;
 import model.Sala;
 import model.Sifarnik;
 
@@ -41,6 +47,15 @@ public class FilmController {
 	
 	@Autowired
 	KomentarRepository komR;
+	
+	@Autowired
+	UserService us;
+	
+	@Autowired
+	RezervacijaRepository rr;
+	
+	@Autowired
+	MestoRepository mr;
 
 	@RequestMapping(value = "/saveFilm", method = RequestMethod.POST)
 	public String sacuvajFilm(String naslov, String uloge, String zanr, String reditelj, String godina, String trajanje,
@@ -168,7 +183,80 @@ public class FilmController {
 		return "ProjekcijeFilmova";
 	}
 	
-
+	@RequestMapping(value = "/getMestaUSali", method = RequestMethod.GET)
+	public String getMestaZaSalu(String projekcijaID, HttpServletRequest request) {
+		
+		Integer projID = Integer.parseInt(projekcijaID);
+		
+		Projekcija proj = pr.findById(projID).get();
+		request.getSession().setAttribute("projekcija", proj);
+		int brojRedova = 0;
+		int brojKolona = 10;
+		
+		if(proj.getSala().getBrMesta() > 160) { //Ako se u bazu doda slucajno sala sa brojem mesta koji nije deljiv sa 22, ovo ce da pukne!!!
+			brojKolona = 22;
+		}
+		
+		request.getSession().setAttribute("brojKolona", brojKolona);
+		brojRedova = (proj.getSala().getBrMesta() / brojKolona);
+		request.getSession().setAttribute("brojRedova", brojRedova);
+		
+		Mesta[][] mesta = new Mesta[brojRedova][brojKolona];
+		request.getSession().setAttribute("mesta", mesta);
+		
+		return "SlobodnaMestaUSali";
+	}
 	
+	@RequestMapping(value = "/potvrdiMesta", method = RequestMethod.POST)
+	public String potvrdiMesta(String[] mesto, HttpServletRequest request) {
+		
+		int brojUlaznica = mesto.length;
+		
+		Projekcija proj = (Projekcija) request.getSession().getAttribute("projekcija");
+		
+		double cena = brojUlaznica * proj.getSifarnik().getCena();
+		
+		request.getSession().setAttribute("mesta",mesto);
+		request.getSession().setAttribute("brojUlaznica", brojUlaznica);
+		request.getSession().setAttribute("cena", cena);
+		return "InfoORezervaciji";
+	}
+	
+	@RequestMapping(value = "saveRezervacija", method = RequestMethod.POST)
+	public String sacuvajRezervaciju(HttpServletRequest request) {
+		
+		Rezervacija r = new Rezervacija();
+		Korisnik k = us.getUserFromSession();
+		Projekcija p = (Projekcija) request.getSession().getAttribute("projekcija");
+		int brojUlaznica = (int) request.getSession().getAttribute("brojUlaznica");
+		r.setKorisnik(k);
+		r.setProjekcija(p);
+		r.setBrUlaznica(brojUlaznica);
+		
+		Rezervacija rez = rr.save(r);
+		request.getSession().setAttribute("rezervacija", rez);
+		dodajMestaISmanjiSlobodna(rez, p, request);
+		
+		return "InfoORezervaciji";
+	}
+	
+	private void dodajMestaISmanjiSlobodna(Rezervacija rez, Projekcija p, HttpServletRequest request) {
+
+		String[] mesta = (String[]) request.getSession().getAttribute("mesta");
+		
+		for (int l = 0; l < mesta.length; l++) {
+			String[] niz = mesta[l].split(",");
+			int i = Integer.parseInt(niz[0]);
+			int j = Integer.parseInt(niz[1]);
+			Mesta m = new Mesta();
+			m.setRedMesta(i);
+			m.setBrojMesta(j);
+			m.setRezervacija(rez);
+			mr.save(m);
+
+			//rez.addMesta(m);
+		}
+		//int brojSlobodnihMesta = p.getSlobodnaMesta() - mesta.length;
+	}
 
 }

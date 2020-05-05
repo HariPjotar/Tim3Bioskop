@@ -37,7 +37,7 @@
 					<td>${i.sala.ime}</td>
 					<td>${i.slobodnaMesta}</td>
 					<td>${i.sifarnik.cena}</td>
-					<td><a href = "BioskopSpring....">Rezervisi</a></td>
+					<td><a href = "getMestaUSali?projekcijaID=${i.projekcijaID}">Rezervisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>
