@@ -17,6 +17,8 @@ public class Karta implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int kartaID;
 
+	private double cena;
+
 	private String datum;
 
 	//bi-directional many-to-one association to Korisnik
@@ -38,6 +40,14 @@ public class Karta implements Serializable {
 
 	public void setKartaID(int kartaID) {
 		this.kartaID = kartaID;
+	}
+
+	public double getCena() {
+		return this.cena;
+	}
+
+	public void setCena(double cena) {
+		this.cena = cena;
 	}
 
 	public String getDatum() {

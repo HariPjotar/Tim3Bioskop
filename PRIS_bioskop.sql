@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `film` (
   PRIMARY KEY (`filmID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.film: ~2 rows (approximately)
+-- Dumping data for table pris.film: ~8 rows (approximately)
 /*!40000 ALTER TABLE `film` DISABLE KEYS */;
 INSERT INTO `film` (`filmID`, `naslov`, `uloge`, `zanr`, `reditelj`, `godina`, `trajanje`, `opis`, `plakat`, `trailer`) VALUES
 	(1, 'I Am Legend', 'Will Smith, Alice Braga, Charlie Tahan', 'Avantura, Drama, Naucna fantastika', 'Francis Lawrence', 2007, '1h 41min', 'Neobjasnjivo imun na virus, Nevil je poslednji preziveli covek u razrusenom Njujorku, a mozda i u celom svetu. Vec tri godine Nevil svakodnevno salje radio poruke, ocajnicki pokusavajuci da pronadje ostale prezivele. Ali nije sam. Nevila, mozda jos jedinu i najvecu nadu za spas covecanstva, pokrece samo jedna poslednja misija: da pronadje nacin da ponisti virus pomocu sopstvene imune krvi.', 'https://16707student.files.wordpress.com/2014/11/i_am_legend_ver_0484c083912_original.jpg', 'https://www.youtube.com/embed/dtKMEAXyPkg'),
@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `karta` (
   `datum` varchar(50) NOT NULL,
   `projekcijaID` int NOT NULL,
   `korisnikID` int NOT NULL,
+  `cena` double DEFAULT NULL,
   PRIMARY KEY (`kartaID`),
   KEY `Karta_fk0` (`projekcijaID`),
   KEY `Karta_fk1` (`korisnikID`),
@@ -79,10 +80,21 @@ CREATE TABLE IF NOT EXISTS `komentar` (
   KEY `Komentar_fk1` (`korisnikID`),
   CONSTRAINT `Komentar_fk0` FOREIGN KEY (`filmID`) REFERENCES `film` (`filmID`),
   CONSTRAINT `Komentar_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.komentar: ~0 rows (approximately)
+-- Dumping data for table pris.komentar: ~8 rows (approximately)
 /*!40000 ALTER TABLE `komentar` DISABLE KEYS */;
+INSERT INTO `komentar` (`komentarID`, `filmID`, `korisnikID`, `komentar`, `datumKom`, `ocena`, `datumOc`) VALUES
+	(1, 1, 1, 'Vas komentar...', '2020-05-05', 2, '2020-05-05'),
+	(2, 1, 1, 'sdghjl;', '2020-05-05', 5, '2020-05-05'),
+	(3, 1, 1, 'Vas komentar...', '2020-05-05', 5, '2020-05-05'),
+	(4, 3, 2, 'Vas komentar...', '2020-05-05', 5, '2020-05-05'),
+	(5, 3, 1, 'neki komentar', '2020-05-06', 5, '2020-05-06'),
+	(6, 1, 1, 'Vas komentar...', '2020-05-06', 5, '2020-05-06'),
+	(7, 1, 1, 'Vas komentar...', '2020-05-06', 5, '2020-05-06'),
+	(8, 1, 1, 'Vas komentar...', '2020-05-06', 5, '2020-05-06'),
+	(9, 8, 1, 'Vas komentar...', '2020-05-06', 3, '2020-05-06'),
+	(10, 1, 1, 'Vas komentar...', '2020-05-06', 3, '2020-05-06');
 /*!40000 ALTER TABLE `komentar` ENABLE KEYS */;
 
 -- Dumping structure for table pris.korisnik
@@ -100,10 +112,14 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   UNIQUE KEY `username` (`username`),
   KEY `Korisnik_fk0` (`ulogaIdD`),
   CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaIdD`) REFERENCES `uloga` (`ulogaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.korisnik: ~6 rows (approximately)
+-- Dumping data for table pris.korisnik: ~2 rows (approximately)
 /*!40000 ALTER TABLE `korisnik` DISABLE KEYS */;
+INSERT INTO `korisnik` (`korisnikID`, `ime`, `prezime`, `email`, `username`, `password`, `ulogaIdD`) VALUES
+	(1, 'Ivana', 'Stojanovic', 'is@gmail.com', 'ivana', '$2a$10$/EE2b2GWNjE.6GBy5Oq53evIgf3Lt4CuJTSSGAR3uR1O3gvGFGNVm', 3),
+	(2, 'Admin', 'Adminovic', 'admin@gmail.com', 'admin', '$2a$10$TsFLeqYzZJf2nbQhL190jO8qVzOh9kwrIa5elnI9Yx25dIs7F6oL2', 1),
+	(3, 'Ivana', 'Stojanovic', 'asdfg@gmail.com', 'ivana2', '$2a$10$Y5tCJOY4kLZ7jn7kEsV8Fe/ecLObuIzOG0/es2gDuW2jK0ovl3oSa', 1);
 /*!40000 ALTER TABLE `korisnik` ENABLE KEYS */;
 
 -- Dumping structure for table pris.mesta
@@ -116,10 +132,13 @@ CREATE TABLE IF NOT EXISTS `mesta` (
   PRIMARY KEY (`mestoID`),
   KEY `Mesta_fk0` (`rezervacijaID`),
   CONSTRAINT `Mesta_fk0` FOREIGN KEY (`rezervacijaID`) REFERENCES `rezervacija` (`rezervacijaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.mesta: ~0 rows (approximately)
+-- Dumping data for table pris.mesta: ~2 rows (approximately)
 /*!40000 ALTER TABLE `mesta` DISABLE KEYS */;
+INSERT INTO `mesta` (`mestoID`, `redMesta`, `brojMesta`, `rezervacijaID`) VALUES
+	(1, 7, 1, 1),
+	(2, 7, 2, 1);
 /*!40000 ALTER TABLE `mesta` ENABLE KEYS */;
 
 -- Dumping structure for table pris.projekcija
@@ -141,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `projekcija` (
   CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `sifarnik` (`sifarnikID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.projekcija: ~10 rows (approximately)
+-- Dumping data for table pris.projekcija: ~25 rows (approximately)
 /*!40000 ALTER TABLE `projekcija` DISABLE KEYS */;
 INSERT INTO `projekcija` (`projekcijaID`, `vreme`, `datum`, `slobodnaMesta`, `salaID`, `filmID`, `sifarnikID`) VALUES
 	(1, '20:00', '2020-05-05', 440, 1, 1, 1),
@@ -184,10 +203,12 @@ CREATE TABLE IF NOT EXISTS `rezervacija` (
   KEY `Rezervacija_fk1` (`korisnikID`),
   CONSTRAINT `Rezervacija_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `projekcija` (`projekcijaID`),
   CONSTRAINT `Rezervacija_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.rezervacija: ~0 rows (approximately)
 /*!40000 ALTER TABLE `rezervacija` DISABLE KEYS */;
+INSERT INTO `rezervacija` (`rezervacijaID`, `projekcijaID`, `korisnikID`, `brUlaznica`) VALUES
+	(1, 15, 1, 2);
 /*!40000 ALTER TABLE `rezervacija` ENABLE KEYS */;
 
 -- Dumping structure for table pris.sala

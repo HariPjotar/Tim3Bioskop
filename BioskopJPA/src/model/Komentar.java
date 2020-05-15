@@ -3,18 +3,17 @@ package model;
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 /**
  * The persistent class for the komentar database table.
  * 
  */
 @Entity
-@NamedQuery(name="Komentar.findAll", query="SELECT k FROM Komentar k")
+@NamedQuery(name = "Komentar.findAll", query = "SELECT k FROM Komentar k")
 public class Komentar implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int komentarID;
 
 	private String datumKom;
@@ -25,14 +24,14 @@ public class Komentar implements Serializable {
 
 	private int ocena;
 
-	//bi-directional many-to-one association to Film
+	// bi-directional many-to-one association to Film
 	@ManyToOne
-	@JoinColumn(name="filmID")
+	@JoinColumn(name = "filmID")
 	private Film film;
 
-	//bi-directional many-to-one association to Korisnik
+	// bi-directional many-to-one association to Korisnik
 	@ManyToOne
-	@JoinColumn(name="korisnikID")
+	@JoinColumn(name = "korisnikID")
 	private Korisnik korisnik;
 
 	public Komentar() {
@@ -93,5 +92,4 @@ public class Komentar implements Serializable {
 	public void setKorisnik(Korisnik korisnik) {
 		this.korisnik = korisnik;
 	}
-	
 }
