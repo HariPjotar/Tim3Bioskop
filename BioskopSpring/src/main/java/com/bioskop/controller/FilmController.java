@@ -351,6 +351,16 @@ public class FilmController {
 		
 		return "PregledRezervacija";
 	}
+	
+	@RequestMapping(value = "/vratiKarte", method = RequestMethod.GET)
+	public String vratiKarte(String startDate, String endDate, HttpServletRequest request) throws ParseException {
+
+		List<Karta> karte = kr.vratiKarte(startDate, endDate);
+
+		request.getSession().setAttribute("karte", karte);
+
+		return "PregledProfita";
+	}
 
 	
 }

@@ -26,6 +26,8 @@
 			
 			<a href="/BioskopSpring/filmController/getFilmovi">Prodaja karata</a><br><br><br><br>
 			
+			<a href="/BioskopSpring/PregledProfita.jsp">Pregled profita</a>
+			
 		</div>
 	</div> 
 	
