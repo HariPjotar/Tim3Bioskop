@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bioskop.repository.FilmRepository;
+import com.bioskop.repository.KartaRepository;
 import com.bioskop.repository.KomentarRepository;
 import com.bioskop.repository.MestoRepository;
 import com.bioskop.repository.ProjekcijaRepository;
@@ -22,6 +23,7 @@ import com.bioskop.repository.SifarnikRepository;
 import com.bioskop.security.UserService;
 
 import model.Film;
+import model.Karta;
 import model.Komentar;
 import model.Korisnik;
 import model.Mesta;
@@ -57,6 +59,9 @@ public class FilmController {
 	
 	@Autowired
 	MestoRepository mr;
+	
+	@Autowired
+	KartaRepository kr;
 
 	@RequestMapping(value = "/saveFilm", method = RequestMethod.POST)
 	public String sacuvajFilm(String naslov, String uloge, String zanr, String reditelj, String godina, String trajanje,
@@ -315,5 +320,37 @@ public class FilmController {
 		
 		return "NajboljeOcenjeniFilmovi";
 	}
+	
+	@RequestMapping(value = "/getRezervacije", method = RequestMethod.GET)
+	public String getRezervacije(String projekcijaID, HttpServletRequest request) {		
+		Integer projID = Integer.parseInt(projekcijaID);
+		Projekcija p = pr.findById(projID).get();
+		List<Rezervacija> rezervacije = rr.findByProjekcija(p);	
+		request.getSession().setAttribute("proj", p);
+		request.getSession().setAttribute("rezervacije", rezervacije);
+		return "PregledRezervacija";		
+	}
+	
+	@RequestMapping(value = "/sacuvajKarte", method = RequestMethod.GET)
+	public String sacuvajKarte(String brUlaznica, HttpServletRequest request) {
+		LocalDate datum1 = LocalDate.now();
+		String datum = datum1.toString();
+		Korisnik korisnik = us.getUserFromSession();
+		Projekcija projekcija = (Projekcija) request.getSession().getAttribute("proj");
+		double cena = projekcija.getSifarnik().getCena();
+		Integer brUl = Integer.parseInt(brUlaznica);
+		
+		for (int i = 0; i < brUl; i++) {
+			Karta k = new Karta();
+			k.setDatum(datum);
+			k.setKorisnik(korisnik);
+			k.setProjekcija(projekcija);
+			k.setCena(cena);
+			kr.save(k);
+		}
+		
+		return "PregledRezervacija";
+	}
+
 	
 }

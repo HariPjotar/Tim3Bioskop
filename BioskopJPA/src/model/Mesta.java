@@ -61,4 +61,9 @@ public class Mesta implements Serializable {
 		this.rezervacija = rezervacija;
 	}
 
+	@Override
+	public String toString() {
+		return "[red:" + redMesta + ", broj:" + brojMesta + "]";
+	}
+
 }

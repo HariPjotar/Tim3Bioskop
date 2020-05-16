@@ -74,6 +74,16 @@ public class Rezervacija implements Serializable {
 
 		return mesta;
 	}
+	
+	public String stampajMesta() {
+		List<Mesta> mestas = this.mestas;
+		String s = "";
+		for (Mesta m : mestas) {
+			s += m.toString();
+			s += " ";
+		}
+		return s;
+	}
 
 	public Korisnik getKorisnik() {
 		return this.korisnik;

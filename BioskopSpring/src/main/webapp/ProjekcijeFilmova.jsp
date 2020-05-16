@@ -28,6 +28,9 @@
 				<th>Slobodna mesta</th>
 				<th>Cena</th>
 				<th>Rezervacija</th>
+				
+				<!-- Ivana -->
+				<th>Korisnik ima rezervaciju</th>
 			</tr>
 			<c:forEach var="i" items="${projekcije}">
 				<tr>
@@ -38,6 +41,9 @@
 					<td>${i.slobodnaMesta}</td>
 					<td>${i.sifarnik.cena}</td>
 					<td><a href = "getMestaUSali?projekcijaID=${i.projekcijaID}">Rezervisi</a></td>
+					
+					<!-- Ivana -->
+					<td><a href = "getRezervacije?projekcijaID=${i.projekcijaID}">Prikazi rezervacije</a></td>
 				</tr>
 			</c:forEach>
 		</table>

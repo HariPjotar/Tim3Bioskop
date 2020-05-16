@@ -34,6 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp", "/InfoOFilmu.jsp", "/NajboljeOcenjeniFilmovi.jsp").permitAll()
 		.antMatchers("/pocetna.jsp").hasAnyRole("ADMIN", "KORISNIK")
 		.antMatchers("/ProjekcijeFilmova.jsp", "/SlobodnaMestaUSali.jsp", "/InfoORezervaciji.jsp").hasRole("KORISNIK")
+		.antMatchers("/Rezervacije.jsp").hasRole("KORISNIK")
 		.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp").hasRole("ADMIN")
 		.and()
 		.formLogin()
