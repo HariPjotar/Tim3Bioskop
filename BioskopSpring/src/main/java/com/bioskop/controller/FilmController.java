@@ -13,20 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bioskop.repository.FilmRepository;
-import com.bioskop.repository.KartaRepository;
 import com.bioskop.repository.KomentarRepository;
-import com.bioskop.repository.MestoRepository;
 import com.bioskop.repository.ProjekcijaRepository;
-import com.bioskop.repository.RezervacijaRepository;
 import com.bioskop.repository.SalaRepository;
 import com.bioskop.repository.SifarnikRepository;
 import com.bioskop.security.UserService;
 
 import model.Film;
-import model.Karta;
 import model.Komentar;
-import model.Korisnik;
-import model.Mesta;
 import model.Projekcija;
 import model.Rezervacija;
 import model.Sala;
@@ -54,15 +48,6 @@ public class FilmController {
 	@Autowired
 	UserService us;
 	
-	@Autowired
-	RezervacijaRepository rr;
-	
-	@Autowired
-	MestoRepository mr;
-	
-	@Autowired
-	KartaRepository kr;
-
 	@RequestMapping(value = "/saveFilm", method = RequestMethod.POST)
 	public String sacuvajFilm(String naslov, String uloge, String zanr, String reditelj, String godina, String trajanje,
 			String opis, String plakat, String trailer, HttpServletRequest request) {
@@ -176,105 +161,6 @@ public class FilmController {
 		return "InfoOFilmu";
 	}
 	
-	@RequestMapping(value = "/getFilmovi", method = RequestMethod.GET) 
-	public String getFilmovi(HttpServletRequest request) {
-		List<Film> filmovi = fr.findAll();
-		request.getSession().setAttribute("filmovi", filmovi);
-		return "ProjekcijeFilmova";
-	}
-	
-	@RequestMapping(value = "/getProjekcije", method = RequestMethod.GET)
-	public String getProjekcije(Integer filmID, HttpServletRequest request) {
-		Film f = fr.findById(filmID).get();
-		List<Projekcija> projekcije = pr.findByFilm(f);
-		request.getSession().setAttribute("projekcije", projekcije);
-		return "ProjekcijeFilmova";
-	}
-	
-	@RequestMapping(value = "/getMestaUSali", method = RequestMethod.GET)
-	public String getMestaZaSalu(String projekcijaID, HttpServletRequest request) {
-		
-		Integer projID = Integer.parseInt(projekcijaID);
-		
-		Projekcija proj = pr.findById(projID).get();
-		request.getSession().setAttribute("projekcija", proj);
-		int brojRedova = 0;
-		int brojKolona = 10;
-		
-		if(proj.getSala().getBrMesta() > 160) { //Ako se u bazu doda slucajno sala sa brojem mesta koji nije deljiv sa 22, ovo ce da pukne!!!
-			brojKolona = 22;
-		}
-		
-		request.getSession().setAttribute("brojKolona", brojKolona);
-		brojRedova = (proj.getSala().getBrMesta() / brojKolona);
-		request.getSession().setAttribute("brojRedova", brojRedova);
-		
-		Mesta[][] mesta = new Mesta[brojRedova][brojKolona];
-		
-		
-		request.getSession().setAttribute("mesta", mesta);
-		
-		return "SlobodnaMestaUSali";
-	}
-	
-	@RequestMapping(value = "/potvrdiMesta", method = RequestMethod.POST)
-	public String potvrdiMesta(String[] mesto, HttpServletRequest request) {
-		
-		int brojUlaznica = mesto.length;
-		
-		Projekcija proj = (Projekcija) request.getSession().getAttribute("projekcija");
-		
-		double cena = brojUlaznica * proj.getSifarnik().getCena();
-		
-		request.getSession().setAttribute("mesta",mesto);
-		request.getSession().setAttribute("brojUlaznica", brojUlaznica);
-		request.getSession().setAttribute("cena", cena);
-		return "InfoORezervaciji";
-	}
-	
-	@RequestMapping(value = "saveRezervacija", method = RequestMethod.POST)
-	public String sacuvajRezervaciju(HttpServletRequest request) {
-		
-		Rezervacija r = new Rezervacija();
-		Korisnik k = us.getUserFromSession();
-		Projekcija p = (Projekcija) request.getSession().getAttribute("projekcija");
-		int brojUlaznica = (int) request.getSession().getAttribute("brojUlaznica");
-		r.setKorisnik(k);
-		r.setProjekcija(p);
-		r.setBrUlaznica(brojUlaznica);
-		
-		Rezervacija rez = rr.save(r);
-		
-		//List<Rezervacija> temp2 = p.getRezervacijas();
-		//temp2.add(r);
-		request.getSession().setAttribute("rezervacija", rez);
-		dodajMestaISmanjiSlobodna(rez, p, request);
-		
-		return "InfoORezervaciji";
-	}
-	
-	private void dodajMestaISmanjiSlobodna(Rezervacija rez, Projekcija p, HttpServletRequest request) {
-
-		String[] mesta = (String[]) request.getSession().getAttribute("mesta");
-		List<Mesta> temp = new ArrayList<Mesta>();
-		
-		for (int l = 0; l < mesta.length; l++) {
-			String[] niz = mesta[l].split(",");
-			int i = Integer.parseInt(niz[0]);
-			int j = Integer.parseInt(niz[1]);
-			Mesta m = new Mesta();
-			m.setRedMesta(i);
-			m.setBrojMesta(j);
-			m.setRezervacija(rez);
-			p.setSlobodnaMesta(p.getSlobodnaMesta() - 1);
-			mr.save(m);
-			temp.add(m);
-			pr.updateMesta(p.getSlobodnaMesta(), p.getProjekcijaID());
-		}
-		rez.setMestas(temp);
-		
-	}
-	
 	@RequestMapping(value = "/getNajboljeOcenjeniFilmovi", method = RequestMethod.GET)
 	public String getNajboljeOcenjeniFilmovi(HttpServletRequest request) {
 		
@@ -320,47 +206,67 @@ public class FilmController {
 		
 		return "NajboljeOcenjeniFilmovi";
 	}
-	
-	@RequestMapping(value = "/getRezervacije", method = RequestMethod.GET)
-	public String getRezervacije(String projekcijaID, HttpServletRequest request) {		
-		Integer projID = Integer.parseInt(projekcijaID);
-		Projekcija p = pr.findById(projID).get();
-		List<Rezervacija> rezervacije = rr.findByProjekcija(p);	
-		request.getSession().setAttribute("proj", p);
-		request.getSession().setAttribute("rezervacije", rezervacije);
-		return "PregledRezervacija";		
-	}
-	
-	@RequestMapping(value = "/sacuvajKarte", method = RequestMethod.GET)
-	public String sacuvajKarte(String brUlaznica, HttpServletRequest request) {
-		LocalDate datum1 = LocalDate.now();
-		String datum = datum1.toString();
-		Korisnik korisnik = us.getUserFromSession();
-		Projekcija projekcija = (Projekcija) request.getSession().getAttribute("proj");
-		double cena = projekcija.getSifarnik().getCena();
-		Integer brUl = Integer.parseInt(brUlaznica);
+
+	@RequestMapping(value = "/getZanrFilma", method = RequestMethod.GET)
+	public String getZanrFilma(HttpServletRequest request) {
 		
-		for (int i = 0; i < brUl; i++) {
-			Karta k = new Karta();
-			k.setDatum(datum);
-			k.setKorisnik(korisnik);
-			k.setProjekcija(projekcija);
-			k.setCena(cena);
-			kr.save(k);
+		List<Film> sviFilmovi = fr.findAll();
+		List<String> zanrovi = new ArrayList<String>();
+		
+		for(Film f : sviFilmovi) {
+			String[] niz = f.getZanr().split(", ");
+			for(String s : niz) {
+				s.trim();
+				if(!zanrovi.contains(s)) {
+					zanrovi.add(s);
+				}
+			}
 		}
 		
-		return "PregledRezervacija";
+		for(String s : zanrovi) {
+			System.out.println(s);
+		}
+		
+		request.getSession().setAttribute("zanrovi", zanrovi);
+		return "PretragaFilmova";
 	}
 	
-	@RequestMapping(value = "/vratiKarte", method = RequestMethod.GET)
-	public String vratiKarte(String startDate, String endDate, HttpServletRequest request) throws ParseException {
-
-		List<Karta> karte = kr.vratiKarte(startDate, endDate);
-
-		request.getSession().setAttribute("karte", karte);
-
-		return "PregledProfita";
+	@RequestMapping(value = "/getFilmoviSaZanrom", method = RequestMethod.GET)
+	public String getFilmoviSaZanrom(String zanr, HttpServletRequest request) {
+		List<Film> filmovi = fr.vratiFilmoveSaZanrom(zanr);
+		request.getSession().setAttribute("filmoviSaZanrom", filmovi);
+		
+		System.out.println("Filmovi koji sadrze zanr \"" + zanr + "\": ");
+		for(Film f : filmovi) {
+			System.out.println(f.getNaslov());
+		}
+		
+		return "PretragaFilmova";
 	}
-
 	
+	@RequestMapping(value = "/getFilmoviSaGodinom", method = RequestMethod.GET)
+	public String getFilmoviSaGodinom(Integer godina, HttpServletRequest request) {
+		List<Film> filmovi = fr.vratiFilmoveSaGodinom(godina);
+		request.getSession().setAttribute("filmoviSaGodinom", filmovi);
+		
+		System.out.println("Filmovi iz godine "+ godina + ": ");
+		for(Film f : filmovi) {
+			System.out.println(f.getNaslov());
+		}
+		
+		return "PretragaFilmova";
+	}
+	
+	@RequestMapping(value = "/getFilmoviSaNaslovom", method = RequestMethod.GET)
+	public String getFilmoviSaNaslovom(String naslov, HttpServletRequest request) {
+		List<Film> filmovi = fr.vratiFilmoveSaNaslovom(naslov);
+		request.getSession().setAttribute("filmoviSaNaslovom", filmovi);
+		
+		System.out.println("Filmovi sa naslovom \"" + naslov + "\": ");
+		for(Film f : filmovi) {
+			System.out.println(f.getNaslov());
+		}
+		
+		return "PretragaFilmova";
+	}
 }

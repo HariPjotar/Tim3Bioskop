@@ -12,7 +12,7 @@
 </head>
 <body class = "background2">
 	
-	<form action = "/BioskopSpring/filmController/vratiKarte">
+	<form action = "/BioskopSpring/mestaController/vratiKarte">
 	<div class = "format">
 	Odaberite prvi dan  <input type="date" name="startDate"><br>
 	Odaberite zakljucni dan  <input type="date" name="endDate">

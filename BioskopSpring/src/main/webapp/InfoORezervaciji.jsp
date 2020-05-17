@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form action="/BioskopSpring/filmController/saveRezervacija" method = "POST">
+	<form action="/BioskopSpring/mestaController/saveRezervacija" method = "POST">
 	
 		${projekcija.film.naslov}<br>
 		${projekcija.datum}<br>

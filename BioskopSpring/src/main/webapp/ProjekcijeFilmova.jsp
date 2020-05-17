@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<form action ="/BioskopSpring/filmController/getProjekcije" method = "GET">
+	<form action ="/BioskopSpring/mestaController/getProjekcije" method = "GET">
 		<select name = "filmID">
 		<c:forEach var = "f" items = "${filmovi}">
 			<option value = "${f.filmID}"> ${f.naslov}</option>

@@ -22,9 +22,9 @@
 	
 			<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">Najbolje ocenjeni filmovi u prethodnih mesec dana.</a><br><br><br><br>
 			
-			<a href="/BioskopSpring/filmController/getFilmovi">Rezervacija</a><br><br><br>
+			<a href="/BioskopSpring/mestaController/getFilmovi">Rezervacija</a><br><br><br><br>
 			
-			<a href="/BioskopSpring/filmController/getFilmovi">Prodaja karata</a><br><br><br><br>
+			<a href="/BioskopSpring/mestaController/getFilmovi">Prodaja karata</a><br><br><br><br>
 			
 			<a href="/BioskopSpring/PregledProfita.jsp">Pregled profita</a>
 			

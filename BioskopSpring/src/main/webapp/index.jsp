@@ -21,6 +21,8 @@
 	
 			<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">Najbolje ocenjeni filmovi u prethodnih mesec dana.</a><br><br><br><br>
 			
+			<a href="/BioskopSpring/filmController/getZanrFilma">Pretraga filmova</a><br><br><br><br>
+			
 			<a href="/BioskopSpring/userController/loginPage">Login</a><br><br><br><br>
 			
 			<a href="/BioskopSpring/userController/registerUser">Registracija</a><br><br><br><br>
