@@ -94,17 +94,28 @@ public class MestaContoller {
 	@RequestMapping(value = "/potvrdiMesta", method = RequestMethod.POST)
 	public String potvrdiMesta(String[] mesto, HttpServletRequest request) {
 		
+		List<Integer> listaKolona = new ArrayList<>();
+		List<Integer> listaRedova = new ArrayList<>();
+		
 		int tmp = 0;
 		System.out.println("NIZ MESTA2: ");
 		for(String s : mesto) {
 			System.out.println(s);
 			tempNiz[tmp] = s;
 			tmp++;
+			String[] pom = s.split(",");
+			listaKolona.add(Integer.parseInt(pom[1]));
+			listaRedova.add(Integer.parseInt(pom[0]));
 		}
 		
-		System.out.println("NIZ MESTA3: ");
-		for(String s : tempNiz) {
-			System.out.println(s);
+		System.out.println("KOLONE KOJE TREBA REZERVISATI(I-OVI): ");
+		for(Integer i : listaKolona) {
+			System.out.println(i);
+		}
+		
+		System.out.println("REDOVI KOJE TREBA REZERVISATI(J-OVI): ");
+		for(Integer i : listaRedova) {
+			System.out.println(i);
 		}
 		
 		System.out.println("MESTO.LENGTH: " + mesto.length);
@@ -114,6 +125,8 @@ public class MestaContoller {
 		
 		double cena = brojUlaznica * proj.getSifarnik().getCena();
 		
+		request.getSession().setAttribute("listaKolona", listaKolona);
+		request.getSession().setAttribute("listaRedova", listaRedova);
 		request.getSession().setAttribute("mesta", mesto);
 		request.getSession().setAttribute("brojUlaznica", brojUlaznica);
 		request.getSession().setAttribute("cena", cena);
