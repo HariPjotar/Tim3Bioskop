@@ -27,15 +27,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.userDetailsService(service);
 	}
 
-	//naknadno dodati radnika i pregled profita
 	@Override
 	public void configure(HttpSecurity security) throws Exception {
 		security.authorizeRequests()
-		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp", "/InfoOFilmu.jsp", "/NajboljeOcenjeniFilmovi.jsp").permitAll()
-		.antMatchers("/pocetna.jsp").hasAnyRole("ADMIN", "KORISNIK")
-		.antMatchers("/ProjekcijeFilmova.jsp", "/SlobodnaMestaUSali.jsp", "/InfoORezervaciji.jsp").hasRole("KORISNIK")
-		.antMatchers("/Rezervacije.jsp").hasRole("KORISNIK")
-		.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp").hasRole("ADMIN")
+		.antMatchers("/", "/Logovanje.jsp", "/Registracija.jsp", "/PregledRepertoara,jsp","/PretragaFilmova.jsp","/InfoOFilmu.jsp", "/NajboljeOcenjeniFilmovi.jsp").permitAll()
+		.antMatchers("/pocetna.jsp").hasAnyRole("ADMIN", "KORISNIK", "RADNIK")
+		.antMatchers("/ProjekcijeFilmova.jsp", "/SlobodnaMestaUSali.jsp", "/InfoORezervaciji.jsp").hasAnyRole("KORISNIK", "RADNIK")
+		.antMatchers("/PregledRezervacija.jsp").hasRole("RADNIK")
+		.antMatchers("/UnosFilma.jsp", "/UnosProjekcije.jsp", "/PregledProfita.jsp").hasRole("ADMIN")
 		.and()
 		.formLogin()
 		.loginPage("/Logovanje.jsp")
