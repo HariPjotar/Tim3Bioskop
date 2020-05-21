@@ -59,10 +59,16 @@ CREATE TABLE IF NOT EXISTS `karta` (
   KEY `Karta_fk1` (`korisnikID`),
   CONSTRAINT `Karta_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `projekcija` (`projekcijaID`),
   CONSTRAINT `Karta_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.karta: ~0 rows (approximately)
+-- Dumping data for table pris.karta: ~5 rows (approximately)
 /*!40000 ALTER TABLE `karta` DISABLE KEYS */;
+INSERT INTO `karta` (`kartaID`, `datum`, `projekcijaID`, `korisnikID`, `cena`) VALUES
+	(1, '2020-05-16', 26, 1, 350),
+	(2, '2020-05-16', 26, 1, 350),
+	(3, '2020-05-17', 26, 1, 350),
+	(4, '2020-05-17', 26, 1, 350),
+	(5, '2020-05-17', 26, 1, 350);
 /*!40000 ALTER TABLE `karta` ENABLE KEYS */;
 
 -- Dumping structure for table pris.komentar
@@ -112,14 +118,16 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
   UNIQUE KEY `username` (`username`),
   KEY `Korisnik_fk0` (`ulogaIdD`),
   CONSTRAINT `Korisnik_fk0` FOREIGN KEY (`ulogaIdD`) REFERENCES `uloga` (`ulogaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.korisnik: ~2 rows (approximately)
 /*!40000 ALTER TABLE `korisnik` DISABLE KEYS */;
 INSERT INTO `korisnik` (`korisnikID`, `ime`, `prezime`, `email`, `username`, `password`, `ulogaIdD`) VALUES
 	(1, 'Ivana', 'Stojanovic', 'is@gmail.com', 'ivana', '$2a$10$/EE2b2GWNjE.6GBy5Oq53evIgf3Lt4CuJTSSGAR3uR1O3gvGFGNVm', 3),
 	(2, 'Admin', 'Adminovic', 'admin@gmail.com', 'admin', '$2a$10$TsFLeqYzZJf2nbQhL190jO8qVzOh9kwrIa5elnI9Yx25dIs7F6oL2', 1),
-	(3, 'Ivana', 'Stojanovic', 'asdfg@gmail.com', 'ivana2', '$2a$10$Y5tCJOY4kLZ7jn7kEsV8Fe/ecLObuIzOG0/es2gDuW2jK0ovl3oSa', 1);
+	(3, 'Ivana', 'Stojanovic', 'asdfg@gmail.com', 'ivana2', '$2a$10$Y5tCJOY4kLZ7jn7kEsV8Fe/ecLObuIzOG0/es2gDuW2jK0ovl3oSa', 1),
+	(4, 'Radnik', 'Radicic', 'radnik@gmail.com', 'RadnikRadicic', '$2a$10$dBr4XYE7O.VpAsLGe2roqetxHIs8cfRaKpEXNSiI2ay3se/53pMM.', 2),
+	(5, 'Sima', 'Simic', 'sima@yahoo.com', 'SimaSimic', '$2a$10$l0lgBQv.I.q1BbMpKmx08Oei5B3JuHaF3OkzrLIOOIJqjaQVv7BQK', 2);
 /*!40000 ALTER TABLE `korisnik` ENABLE KEYS */;
 
 -- Dumping structure for table pris.mesta
@@ -132,13 +140,18 @@ CREATE TABLE IF NOT EXISTS `mesta` (
   PRIMARY KEY (`mestoID`),
   KEY `Mesta_fk0` (`rezervacijaID`),
   CONSTRAINT `Mesta_fk0` FOREIGN KEY (`rezervacijaID`) REFERENCES `rezervacija` (`rezervacijaID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.mesta: ~2 rows (approximately)
+-- Dumping data for table pris.mesta: ~7 rows (approximately)
 /*!40000 ALTER TABLE `mesta` DISABLE KEYS */;
 INSERT INTO `mesta` (`mestoID`, `redMesta`, `brojMesta`, `rezervacijaID`) VALUES
 	(1, 7, 1, 1),
-	(2, 7, 2, 1);
+	(2, 7, 2, 1),
+	(3, 1, 1, 2),
+	(4, 1, 2, 2),
+	(5, 1, 8, 3),
+	(6, 1, 9, 3),
+	(7, 1, 10, 3);
 /*!40000 ALTER TABLE `mesta` ENABLE KEYS */;
 
 -- Dumping structure for table pris.projekcija
@@ -158,7 +171,7 @@ CREATE TABLE IF NOT EXISTS `projekcija` (
   CONSTRAINT `Projekcija_fk0` FOREIGN KEY (`salaID`) REFERENCES `sala` (`salaID`),
   CONSTRAINT `Projekcija_fk1` FOREIGN KEY (`filmID`) REFERENCES `film` (`filmID`),
   CONSTRAINT `Projekcija_fk2` FOREIGN KEY (`sifarnikID`) REFERENCES `sifarnik` (`sifarnikID`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- Dumping data for table pris.projekcija: ~25 rows (approximately)
 /*!40000 ALTER TABLE `projekcija` DISABLE KEYS */;
@@ -188,7 +201,14 @@ INSERT INTO `projekcija` (`projekcijaID`, `vreme`, `datum`, `slobodnaMesta`, `sa
 	(23, '20:00', '2020-05-16', 70, 4, 7, 3),
 	(24, '19:00', '2020-05-10', 160, 5, 8, 3),
 	(25, '18:00', '2020-05-11', 160, 5, 8, 3),
-	(26, '19:00', '2020-05-13', 70, 6, 8, 3);
+	(26, '19:00', '2020-05-13', 65, 6, 8, 3),
+	(27, '20:00', '2020-05-22', 440, 1, 1, 3),
+	(28, '19:00', '2020-05-23', 440, 1, 2, 3),
+	(29, '16:00', '2020-05-23', 160, 3, 4, 3),
+	(30, '20:30', '2020-05-24', 70, 2, 7, 3),
+	(31, '20:30', '2020-05-27', 440, 1, 8, 3),
+	(32, '20:00', '2020-05-25', 70, 6, 5, 3),
+	(33, '20:00', '2020-05-26', 70, 6, 6, 3);
 /*!40000 ALTER TABLE `projekcija` ENABLE KEYS */;
 
 -- Dumping structure for table pris.rezervacija
@@ -203,12 +223,14 @@ CREATE TABLE IF NOT EXISTS `rezervacija` (
   KEY `Rezervacija_fk1` (`korisnikID`),
   CONSTRAINT `Rezervacija_fk0` FOREIGN KEY (`projekcijaID`) REFERENCES `projekcija` (`projekcijaID`),
   CONSTRAINT `Rezervacija_fk1` FOREIGN KEY (`korisnikID`) REFERENCES `korisnik` (`korisnikID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table pris.rezervacija: ~0 rows (approximately)
+-- Dumping data for table pris.rezervacija: ~3 rows (approximately)
 /*!40000 ALTER TABLE `rezervacija` DISABLE KEYS */;
 INSERT INTO `rezervacija` (`rezervacijaID`, `projekcijaID`, `korisnikID`, `brUlaznica`) VALUES
-	(1, 15, 1, 2);
+	(1, 15, 1, 2),
+	(2, 26, 2, 2),
+	(3, 26, 1, 3);
 /*!40000 ALTER TABLE `rezervacija` ENABLE KEYS */;
 
 -- Dumping structure for table pris.sala
