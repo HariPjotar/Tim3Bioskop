@@ -21,7 +21,7 @@
 			<li><a href="/BioskopSpring/UnosFilma.jsp">Unos novog filma</a></li>
 			<li><a href="/BioskopSpring/filmController/getFilmoviSalaSifarnik">Unos nove projekcije</a></li>
 		</s:authorize>
-		<s:authorize access="hasAnyRole('ADMIN', 'KORISNIK')">
+		<s:authorize access="hasAnyRole('ADMIN', 'KORISNIK', 'RADNIK')">
 			<li style="float:right"><a href="/BioskopSpring/logout">LOG OUT</a></li>
 		</s:authorize>
 	</ul>
