@@ -12,8 +12,8 @@
 <meta charset="ISO-8859-1">
 <title>${film.naslov }</title>
 </head>
+<%@ include file="navigation_bar.jsp"%>
 <body class="background">
-	<%@ include file="navigation_bar.jsp"%>
 	<div class="header">
 		<h1>${film.naslov }</h1>
 	</div>

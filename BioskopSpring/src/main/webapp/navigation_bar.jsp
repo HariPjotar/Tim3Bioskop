@@ -13,16 +13,18 @@
 <body>
 	<br><br><br>
 	<div class="topnav">
-  		<a href="/BioskopSpring/pocetna.jsp">Pocetna</a>
-  		<a href="/BioskopSpring/filmController/nedeljniRepertoar">Repertoar</a>
-  		<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">TOP Filmovi</a>
+	<ul>
+  		<li><a href="/BioskopSpring/pocetna.jsp">Pocetna</a></li>
+  		<li><a href="/BioskopSpring/filmController/nedeljniRepertoar">Repertoar</a></li>
+  		<li><a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">TOP Filmovi</a></li>
   		<s:authorize access="hasRole('ADMIN')">
-			<a href="/BioskopSpring/UnosFilma.jsp">Unos novog filma</a>
-			<a href="/BioskopSpring/filmController/getFilmoviSalaSifarnik">Unos nove projekcije</a></li>
+			<li><a href="/BioskopSpring/UnosFilma.jsp">Unos novog filma</a></li>
+			<li><a href="/BioskopSpring/filmController/getFilmoviSalaSifarnik">Unos nove projekcije</a></li>
 		</s:authorize>
 		<s:authorize access="hasAnyRole('ADMIN', 'KORISNIK')">
-			<a href="/BioskopSpring/logout">LOG OUT</a>
+			<li style="float:right"><a href="/BioskopSpring/logout">LOG OUT</a></li>
 		</s:authorize>
+	</ul>
 	</div>
 	<br><br><br>
 </body>

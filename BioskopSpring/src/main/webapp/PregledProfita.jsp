@@ -10,6 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>Unos Repertoara</title>
 </head>
+<%@ include file="navigation_bar.jsp"%>
 <body class = "background2">
 	
 	<form action = "/BioskopSpring/mestaController/vratiKarte">
