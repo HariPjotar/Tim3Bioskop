@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,6 +27,7 @@ import model.Korisnik;
 import model.Mesta;
 import model.Projekcija;
 import model.Rezervacija;
+import model.Sediste;
 
 @Controller
 @RequestMapping(value = "/mestaController")
@@ -65,29 +68,35 @@ public class MestaContoller {
 	
 	@RequestMapping(value = "/getMestaUSali", method = RequestMethod.GET)
 	public String getMestaZaSalu(String projekcijaID, HttpServletRequest request) {
-		
+
 		Integer projID = Integer.parseInt(projekcijaID);
-		
+
 		Projekcija proj = pr.findById(projID).get();
 		request.getSession().setAttribute("projekcija", proj);
 		int brojRedova = 0;
 		int brojKolona = 10;
-		
-		if(proj.getSala().getBrMesta() > 160) { //Ako se u bazu doda slucajno sala sa brojem mesta koji nije deljiv sa 22, ovo ce da pukne!!!
+
+		if (proj.getSala().getBrMesta() > 160) { // Ako se u bazu doda slucajno sala sa brojem mesta koji nije deljiv sa
+													// 22, ovo ce da pukne!!!
 			brojKolona = 22;
 		}
-		
+
 		request.getSession().setAttribute("brojKolona", brojKolona);
 		brojRedova = (proj.getSala().getBrMesta() / brojKolona);
 		request.getSession().setAttribute("brojRedova", brojRedova);
+
+		Map<Sediste, Integer> mapa = new TreeMap<Sediste, Integer>();
+		List<Mesta> mestaZaRezervaciju = pr.vratiSvaMestaUProjekciji(projID);
 		
-		Mesta[][] mesta = new Mesta[brojRedova][brojKolona];
-		
-		
-		request.getSession().setAttribute("mesta", mesta);
-		
+		for(Mesta m : mestaZaRezervaciju) {
+			mapa.put(new Sediste(m.getRedMesta(), m.getBrojMesta()), 1);
+		}
+
+		request.getSession().setAttribute("mapa", mapa);
+
 		return "SlobodnaMestaUSali";
 	}
+
 	
 	private String[] tempNiz = new String[20];
 	
