@@ -4,11 +4,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+<%@include file ="css/pocetna.css"%>
+</style>
 <meta charset="ISO-8859-1">
 <title>Projekcije filma</title>
 </head>
-<body>
-
+<body class ="background">
+	<div class="header">
+		<h1>Cinema Universe</h1>
+	</div>
+	<%@ include file="navigation_bar.jsp"%>
+	<div style="background-color: #919191">
 	<form action ="/BioskopSpring/mestaController/getProjekcije" method = "GET">
 		<select name = "filmID">
 		<c:forEach var = "f" items = "${filmovi}">
@@ -17,6 +24,7 @@
 	</select><br>
 		<input type = "submit" value = "Prikazi projekcije filma">
 	</form>
+	
 
 	<c:if test="${!empty projekcije}">
 		<table border = "1">
@@ -49,5 +57,6 @@
 		</table>
 
 	</c:if>
+	</div>
 </body>
 </html>
