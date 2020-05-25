@@ -1,6 +1,6 @@
 package model;
 
-public class Sediste implements Comparable<Sediste>{
+public class Sediste implements Comparable<Sediste> {
 
 	int red;
 	int kolona;
@@ -29,20 +29,18 @@ public class Sediste implements Comparable<Sediste>{
 
 	@Override
 	public int compareTo(Sediste o) {
-
-		if(this.red>o.red)
+		if (this.red > o.red)
 			return 1;
-		else if (this.red<o.red)
+		else if (this.red < o.red)
 			return -1;
 		else {
-			if (this.kolona>o.kolona){
+			if (this.kolona > o.kolona) {
 				return 1;
-			}else {
+			} else {
 				return -1;
 			}
 		}
-		
+
 	}
 
-	
 }

@@ -11,10 +11,12 @@
 <meta charset="ISO-8859-1">
 <title>Repertoar</title>
 </head>
+<%@ include file="navigation_bar.jsp"%>
 <body class = "background">
-
 	<div class = "center"> 	
-	<h1><img src = "https://www.mediafire.com/convkey/8c8b/0w7f11smrz6gu8uzg.jpg?size_id=5" style= "padding-left: 50px"></h1>
+	<div class="header">
+		<h1>Repertoar</h1>
+	</div>	
 	<c:forEach items="${proj}" var="p">
 		<form action="/BioskopSpring/filmController/vratiInfoFilm">
 		<br>

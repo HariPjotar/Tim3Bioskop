@@ -86,12 +86,12 @@ public class MestaContoller {
 		request.getSession().setAttribute("brojRedova", brojRedova);
 
 		Map<Sediste, Integer> mapa = new TreeMap<Sediste, Integer>();
-		/*List<Mesta> mestaZaRezervaciju = pr.vratiSvaMestaUProjekciji(projID);
+		List<Mesta> popunjenaMesta = pr.vratiPopunjenaMestaUProjekciji(projID);
 		
-		for(Mesta m : mestaZaRezervaciju) {
+		for(Mesta m : popunjenaMesta) {
 			mapa.put(new Sediste(m.getRedMesta(), m.getBrojMesta()), 1);
-			System.out.println("Treba rezervisati mesto ["+m.getRedMesta()+"]["+m.getBrojMesta()+"]");
-		}*/
+			System.out.println("Treba iksirati mesto ["+m.getRedMesta()+"]["+m.getBrojMesta()+"]");
+		}
 
 		request.getSession().setAttribute("mapa", mapa);
 

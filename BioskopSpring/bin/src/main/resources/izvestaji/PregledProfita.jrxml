@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PregledProfita" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef988af2-c144-4713-9b68-486c932b738a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="profit" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="datum" class="java.lang.String"/>
+	<field name="cena" class="java.lang.Double"/>
+	<field name="projekcija.film.naslov" class="java.lang.String"/>
+	<field name="korisnik.username" class="java.lang.String"/>
+	<variable name="profit" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{cena}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="0" width="360" height="35" uuid="514932d4-0dbb-4caf-b7b2-7c4bbd47dbe0">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[Pregled profita za odabrani period]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="68" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="110" height="40" uuid="954918bb-b105-4a17-837a-3e6457992048"/>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Datum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="0" width="170" height="40" uuid="1fdcee7b-d3b3-4c30-9630-57e09d782e6a"/>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Film]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="0" width="170" height="40" uuid="bba95713-dd0e-4870-b2b1-de500b2be7cc"/>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Radnik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="100" height="40" uuid="8814b87a-5f20-462d-a0d2-ebb01cd2bf5e"/>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Cena]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="50" splitType="Stretch">
+			<textField>
+				<reportElement key="" x="0" y="0" width="110" height="50" uuid="bc0062de-7c89-4cd4-8f53-05176f5dfc83">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4f11ff26-07b8-4226-874f-c5331ef7b48a"/>
+				</reportElement>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{datum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="100" height="50" uuid="b0f2e3ff-bebc-45a8-a7ec-e58eb33f3105">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="287c83c1-6a2b-45a1-b1e0-9d7bcfbbfa80"/>
+				</reportElement>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cena}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="0" width="170" height="50" uuid="1f823250-b8d4-412e-9267-317d2cfc6b80">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2d90ad40-d5c8-41cd-ae8c-e101814f9172"/>
+				</reportElement>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{projekcija.film.naslov}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="0" width="170" height="50" uuid="9c904c7d-4931-4cb7-a9c9-6597a4726cb7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fb780d9d-776d-4451-b7b1-ecbc691814b8"/>
+				</reportElement>
+				<box>
+					<pen lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="rgba(89, 24, 23, 0.23921569)"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{korisnik.username}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="32" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="1" width="100" height="40" uuid="43caa8c0-3660-4984-9cbd-0fca0596505c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{profit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="6" width="62" height="30" uuid="336a1246-3258-4091-b6ea-5fbd17c8c0ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Ukupno:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

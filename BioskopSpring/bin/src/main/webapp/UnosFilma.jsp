@@ -3,31 +3,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
-<style>
-<%@ include file="CSS.css"%>
-</style>
 <head>
+<style>
+<%@include file ="css/pocetna.css"%>
+</style>
 <meta charset="ISO-8859-1">
 <title>Unos Filma</title>
 </head>
-<body>
-	Ovo je neki tekst na stranici za unos filma.
-	
-	<form action = "/BioskopSpring/filmController/saveFilm" method ="POST">
-		
-		Unesite naslov filma: 			  <input type = text name="naslov"><br>
-		Unesite glavne uloge u filmu: 	  <input type = text name="uloge"><br>
-		Unesite zanr filma: 			  <input type = text name="zanr"><br>
-		Unesite reditelja filma: 		  <input type = text name="reditelj"><br>
-		Unesite godinu filma: 			  <input type = text name="godina"><br>
-		Unesite trajanje filma: 		  <input type = text name="trajanje"><br>
-		Unesite opis filma: 			  <input type = text name="opis"><br>
-		Unesite putanju do plakata filma: <input type = text name="plakat"><br>
-		Unesite putanju do trailera filma:<input type = text name="trailer"><br>
-		<input type = "submit" name="dugmeUnos" value = "Unesi film">
-		
-	</form>
-	
+<body class="background">
+	<div class="header">
+		<h1>Unos novog filma</h1>
+	</div>
+	<%@ include file="navigation_bar.jsp"%>
+	<div class="center">
+		<div style = "background-color: #919191;">
+			<form action = "/BioskopSpring/filmController/saveFilm" method ="POST">
+				<div class="center">Unesite naslov filma: 			   <input type = text name="naslov"><br></div>
+				<div class="center">Unesite glavne uloge u filmu: 	   <input type = text name="uloge"><br></div>
+				<div class="center">Unesite zanr filma: 			   <input type = text name="zanr"><br></div>
+				<div class="center">Unesite reditelja filma: 		   <input type = text name="reditelj"><br></div>
+				<div class="center">Unesite godinu filma: 			   <input type = text name="godina"><br></div>
+				<div class="center">Unesite trajanje filma: 		   <input type = text name="trajanje"><br></div>
+				<div class="center">Unesite opis filma: 			   <input type = text name="opis"><br></div>
+				<div class="center">Unesite putanju do plakata filma:  <input type = text name="plakat"><br></div>
+				<div class="center">Unesite putanju do trailera filma: <input type = text name="trailer"><br></div>
+				<br>
+				<input type = "submit" name="dugmeUnos" value = "Unesi film" class ="center">
+				<br>
+			</form>
+		</div>
+	</div>
+
 	<c:if test="${!empty film}">
 		Uspesno je dodat film.
 	</c:if>

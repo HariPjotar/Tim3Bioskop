@@ -13,7 +13,7 @@
 	<div class ="center3">
 
 	<p class = "p1">Pogresni username i/ili password!</p>
-	<a href="/BioskopSpring/userController/loginPage">Pokusajte ponovo.</a>
+	<div class="link"><a href="/BioskopSpring/userController/loginPage">Pokusajte ponovo.</a></div>
 </div>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <style>
@@ -11,8 +12,8 @@
 <meta charset="ISO-8859-1">
 <title>${film.naslov }</title>
 </head>
+<%@ include file="navigation_bar.jsp"%>
 <body class="background">
-
 	<div class="header">
 		<h1>${film.naslov }</h1>
 	</div>
@@ -57,7 +58,8 @@
 
 	<br>
 	<br>
-
+	
+	<s:authorize access="hasRole('KORISNIK')">
 	<form action = "/BioskopSpring/userController/saveKomentar" method ="POST">
 		<div class="komentarDiv">
 			<div class="header2">
@@ -113,6 +115,6 @@
 		</div>
 		<input type="hidden" name="filmid" value = "${film.filmID }">
 	</form>
-	
+	</s:authorize>
 </body>
 </html>

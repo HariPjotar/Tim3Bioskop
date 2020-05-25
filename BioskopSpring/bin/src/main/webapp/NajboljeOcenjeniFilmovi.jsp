@@ -12,9 +12,11 @@
 <title>Najbolje ocenjeni filmovi</title>
 </head>
 <body class = "background">
-
+	<%@ include file="navigation_bar.jsp"%>
 	<div class = "center"> 	
-	<h1><img src = "https://www.mediafire.com/convkey/8c8b/0w7f11smrz6gu8uzg.jpg?size_id=5" style= "padding-left: 50px"></h1>
+	<div class="header">
+		<h1>Repertoar</h1>
+	</div>
 	<c:forEach items="${ocenjeniFilmovi}" var="p" varStatus="in">
 		<form action="/BioskopSpring/filmController/vratiInfoFilm">
 		<br>

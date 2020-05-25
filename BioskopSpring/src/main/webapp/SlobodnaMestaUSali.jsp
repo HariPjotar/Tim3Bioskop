@@ -16,28 +16,25 @@
 		<h1>Pregled Mesta</h1>
 	</div>
 	<%@ include file="navigation_bar.jsp"%>
-	<div class = "center">
-		<form action="/BioskopSpring/mestaController/potvrdiMesta"
-			method="POST">
+	<div class="center">
+		<form action="/BioskopSpring/mestaController/potvrdiMesta" method="POST">
 			<table border="1" style="text-align: center">
 				<c:forEach var="i" begin="1" end="${brojRedova}">
 					<tr>
 						<th>Red ${i}</th>
 						<c:forEach var="j" begin="1" end="${brojKolona}">
-							<td><c:forEach var="entry" items="${mapa}">
-								key is ${entry.key }
-								${entry.key.red }
-								${entry.key.kolona }
-								${entry.value}
-							<c:choose>
-										<c:when test="${entry.value == 1}">
+							<c:set var="slobodno" value="${true}"/>
+							<td>
+							<c:forEach var="entry" items="${mapa}">
+								<c:if test="${entry.key.red == i && entry.key.kolona== j && entry.value == 1}">
 									X
-								</c:when>
-										<c:otherwise>
-											<input type="checkbox" name="mesto" value="${i},${j}">
-										</c:otherwise>
-									</c:choose>
-								</c:forEach></td>
+									<c:set var="slobodno" value="${false}"/>
+								</c:if>
+							</c:forEach>
+							<c:if test="${slobodno}">
+								<input type="checkbox" name="mesto" value="${i},${j}">
+							</c:if>
+							</td>								
 						</c:forEach>
 					</tr>
 				</c:forEach>

@@ -27,7 +27,7 @@
 				<td><input class = "button" type="submit" value="Log in"></td>
 			</tr>
 		</table>
-		<p class = "p1" >Nemate nalog? <a href="/BioskopSpring/userController/registerUser">Registrujte se</a></p>
+		<p class = "p1" >Nemate nalog? <div class="link"><a href="/BioskopSpring/userController/registerUser">Registrujte se</a></div></p>
 	</form>
 	</div>
 </body>
