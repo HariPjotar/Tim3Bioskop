@@ -4,63 +4,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+<%@include file ="css/pocetna.css"%>
+</style>
 <meta charset="ISO-8859-1">
 <title>Slobodna mesta u sali</title>
 </head>
-<body>
-	<form action="/BioskopSpring/mestaController/potvrdiMesta" method="POST">
-		<table border="1" style="text-align: center">
-			<c:forEach var="mesto" begin="0" end="1">
-			</c:forEach>
+<body class="background">
 
-			<!--<c:forEach var="i" begin="1" end="${brojRedova}">
-				<tr>
-					<th>Red ${i}</th>
-					<c:forEach var="j" begin="1" end="${brojKolona}">
-						<td><c:choose>
-								<c:when test="${(i == listaRedova[i]) && (j == listaKolona[j])}">
-											X
-										</c:when>
-								<c:otherwise>
-									<input type="checkbox" name="mesto" value="${i},${j}">
-								</c:otherwise>
-							</c:choose></td>
-					</c:forEach>
-				</tr>
-			</c:forEach>
-			-->
-			
-			 <c:forEach var="i" begin="1" end="${brojRedova}">
-				<tr>
-					<th>Red ${i}</th>
-					<c:forEach var="j" begin="1" end="${brojKolona}">
-						
-						<c:forEach var="k" items="${listaRedova}">
-								<c:forEach var="l" items="${listaKolona}">
-									<c:if test="${(k == i) && (l == j)}">
-									<input type = "hidden" value = "${trebaMesto = trebaMesto + 1}">
-									<c:remove var="l"/>
-									</c:if>
-								</c:forEach>
-							</c:forEach>
-							
-							<td>
+	<div class="header">
+		<h1>Pregled Mesta</h1>
+	</div>
+	<%@ include file="navigation_bar.jsp"%>
+	<div class = "center">
+		<form action="/BioskopSpring/mestaController/potvrdiMesta"
+			method="POST">
+			<table border="1" style="text-align: center">
+				<c:forEach var="i" begin="1" end="${brojRedova}">
+					<tr>
+						<th>Red ${i}</th>
+						<c:forEach var="j" begin="1" end="${brojKolona}">
+							<td><c:forEach var="entry" items="${mapa}">
+								key is ${entry.key }
+								${entry.key.red }
+								${entry.key.kolona }
+								${entry.value}
 							<c:choose>
-								<c:when test="${trebaMesto > 0}">
+										<c:when test="${entry.value == 1}">
 									X
-									<input type = "hidden" value = "${trebaMesto = 0}">
 								</c:when>
-								<c:otherwise>
-									<input type="checkbox" name="mesto" value="${i},${j}">
-								</c:otherwise>
-							</c:choose>
-							</td>
-					</c:forEach>
-				</tr>
-			</c:forEach> 
-
-		</table>
-		<br> <input type="submit" value="Pogledaj rezervaciju">
-	</form>
+										<c:otherwise>
+											<input type="checkbox" name="mesto" value="${i},${j}">
+										</c:otherwise>
+									</c:choose>
+								</c:forEach></td>
+						</c:forEach>
+					</tr>
+				</c:forEach>
+			</table>
+			<br> <input type="submit" value="Pogledaj rezervaciju">
+		</form>
+	</div>
 </body>
 </html>
