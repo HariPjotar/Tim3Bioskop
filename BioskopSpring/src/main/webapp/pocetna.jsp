@@ -26,7 +26,9 @@
 			
 			<s:authorize access="hasRole('RADNIK')"><a href="/BioskopSpring/mestaController/getFilmovi">Prodaja karata</a></s:authorize><br><br><br><br>
 			
-			<s:authorize access="hasRole('ADMIN')"><a href="/BioskopSpring/PregledProfita.jsp">Pregled profita</a></s:authorize>
+			<s:authorize access="hasRole('ADMIN')"><a href="/BioskopSpring/PregledProfita.jsp">Pregled profita</a></s:authorize><br><br><br><br>
+			
+			<s:authorize access="hasRole('ADMIN')"><a href="/BioskopSpring/userController/registerUser">Registracija Radnika</a></s:authorize>
 			
 		</div>
 	</div> 

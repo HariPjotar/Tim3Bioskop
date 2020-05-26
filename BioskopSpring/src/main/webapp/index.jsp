@@ -26,6 +26,7 @@
 			<a href="/BioskopSpring/userController/loginPage">Login</a><br><br><br><br>
 			
 			<a href="/BioskopSpring/userController/registerUser">Registracija</a><br><br><br><br>
+			
 		</div>
 	</div>	
 </body>

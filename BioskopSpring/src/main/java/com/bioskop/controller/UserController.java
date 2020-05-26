@@ -56,7 +56,12 @@ public class UserController {
 		public String newUser(Model model) {
 		Korisnik k = new Korisnik();
 		model.addAttribute("korisnik", k);
-		return "Registracija";
+		
+		if(us.getUserFromSession() == null) {
+			return "Registracija";
+		}
+		
+		return "RegistracijaRadnika";
 	}
 	
 	@RequestMapping(value = "register", method = RequestMethod.POST)
@@ -123,6 +128,29 @@ public class UserController {
 		request.getSession().setAttribute("komentar", komm);
 		
 		return "InfoOFilmu";
+	}
+
+	@RequestMapping(value = "registerR", method = RequestMethod.POST)
+	public String sacuvajRadnika(@ModelAttribute("korisnik") Korisnik k, BindingResult bindingResult) {
+		
+		uv.validate(k, bindingResult);
+		
+		
+		if (bindingResult.hasErrors()) {
+            return "RegistracijaRadnika";
+        }
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		k.setPassword(passwordEncoder.encode(k.getPassword()));
+
+		Uloga u = ur.findById(2).get();
+
+		k.setUloga(u);
+		u.addKorisnik(k);
+		
+		kr.save(k);
+		
+		return "pocetna";
 	}
 	
 }
