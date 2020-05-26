@@ -74,5 +74,10 @@ public class Sala implements Serializable {
 
 		return projekcija;
 	}
+	
+	@Override
+	public String toString() {
+		return ime;
+	}
 
 }

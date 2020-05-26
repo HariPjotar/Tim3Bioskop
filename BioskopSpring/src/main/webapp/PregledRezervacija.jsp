@@ -11,7 +11,6 @@
 <title>Prodaja karata</title>
 </head>
 <body class="background2">	
-	<!-- ispisati podatke o projekciji -->
 	<p>${proj.film.naslov } ${proj.vreme } ${proj.datum } ${proj.sala.ime } ${proj.sifarnik.cena } </p>
 	<c:if test="${!empty rezervacije}">
 			<table>
@@ -29,8 +28,7 @@
 					<td>${r.brUlaznica}</td>
 					<td>${r.stampajMesta()}</td>
 					
-					<td><a href = "sacuvajKarte?brUlaznica=${r.brUlaznica}">Stampaj karte</a></td>
-					
+					<td><a href = "sacuvajKarte?brUlaznica=${r.brUlaznica}">Stampaj karte</a></td>					
 					
 				</tr>
 			</c:forEach>

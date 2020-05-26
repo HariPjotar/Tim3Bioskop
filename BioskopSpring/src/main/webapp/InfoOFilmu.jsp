@@ -59,12 +59,12 @@
 	<br>
 	<br>
 	
-	<s:authorize access="hasRole('KORISNIK')">
 	<form action = "/BioskopSpring/userController/saveKomentar" method ="POST">
 		<div class="komentarDiv">
 			<div class="header2">
 				<h4>KOMENTARI I OCENE:</h4>
 			</div>
+			<s:authorize access="hasRole('KORISNIK')">
 			<div class="komentarDiv2">
 				<fieldset>
 					<legend style="color: white">Postavite komentar i ocenite
@@ -100,6 +100,7 @@
 					<br>
 				</fieldset>
 			</div>
+			</s:authorize>
 			<br>
 			<div class="komentarDiv2">
 				<fieldset>
@@ -115,6 +116,5 @@
 		</div>
 		<input type="hidden" name="filmid" value = "${film.filmID }">
 	</form>
-	</s:authorize>
 </body>
 </html>

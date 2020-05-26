@@ -39,7 +39,8 @@
 					</tr>
 				</c:forEach>
 			</table>
-			<br> <input type="submit" value="Pogledaj rezervaciju">
+			<br> 
+			<input type="submit" value="Pogledaj rezervaciju">
 		</form>
 	</div>
 </body>

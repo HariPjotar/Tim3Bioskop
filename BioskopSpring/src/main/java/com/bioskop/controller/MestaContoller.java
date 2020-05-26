@@ -140,6 +140,7 @@ public class MestaContoller {
 		request.getSession().setAttribute("mesta", mesto);
 		request.getSession().setAttribute("brojUlaznica", brojUlaznica);
 		request.getSession().setAttribute("cena", cena);
+			
 		return "InfoORezervaciji";
 	}
 	
@@ -160,6 +161,11 @@ public class MestaContoller {
 		//temp2.add(r);
 		request.getSession().setAttribute("rezervacija", rez);
 		dodajMestaISmanjiSlobodna(rez, p, request);
+		
+		if(us.getUserFromSession().getUloga().getImeUloge().equals("RADNIK")) {
+			String s = Integer.toString(brojUlaznica);
+			return sacuvajKarte(s, request);
+		}	
 		
 		return "InfoORezervaciji";
 	}
@@ -207,7 +213,7 @@ public class MestaContoller {
 		Integer projID = Integer.parseInt(projekcijaID);
 		Projekcija p = pr.findById(projID).get();
 		List<Rezervacija> rezervacije = rr.findByProjekcija(p);	
-		request.getSession().setAttribute("proj", p);
+		request.getSession().setAttribute("projekcija", p);
 		request.getSession().setAttribute("rezervacije", rezervacije);
 		return "PregledRezervacija";		
 	}
@@ -217,9 +223,11 @@ public class MestaContoller {
 		LocalDate datum1 = LocalDate.now();
 		String datum = datum1.toString();
 		Korisnik korisnik = us.getUserFromSession();
-		Projekcija projekcija = (Projekcija) request.getSession().getAttribute("proj");
+		Projekcija projekcija = (Projekcija) request.getSession().getAttribute("projekcija");
 		double cena = projekcija.getSifarnik().getCena();
 		Integer brUl = Integer.parseInt(brUlaznica);
+		
+		List<Karta> karte = new ArrayList<Karta>();
 		
 		for (int i = 0; i < brUl; i++) {
 			Karta k = new Karta();
@@ -228,9 +236,12 @@ public class MestaContoller {
 			k.setProjekcija(projekcija);
 			k.setCena(cena);
 			kr.save(k);
+			karte.add(k);
 		}
 		
-		return "PregledRezervacija";
+		request.getSession().setAttribute("karte", karte);
+				
+		return "PregledKarata";
 	}
 	
 	@RequestMapping(value = "/vratiKarte", method = RequestMethod.GET)

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,10 +36,15 @@
 				<th>Sala</th>
 				<th>Slobodna mesta</th>
 				<th>Cena</th>
-				<th>Rezervacija</th>
 				
-				<!-- Ivana -->
+				<s:authorize access="hasRole('KORISNIK')">
+				<th>Rezervacija</th>
+				</s:authorize>
+				
+				<s:authorize access="hasRole('RADNIK')">
 				<th>Korisnik ima rezervaciju</th>
+				<th>Korisnik nema rezervaciju</th>
+				</s:authorize>
 			</tr>
 			<c:forEach var="i" items="${projekcije}">
 				<tr>
@@ -47,11 +53,14 @@
 					<td>${i.vreme}</td>
 					<td>${i.sala.ime}</td>
 					<td>${i.slobodnaMesta}</td>
-					<td>${i.sifarnik.cena}</td>
+					<td>${i.sifarnik.cena}</td>					
+					<s:authorize access="hasRole('KORISNIK')">
 					<td><a href = "getMestaUSali?projekcijaID=${i.projekcijaID}">Rezervisi</a></td>
-					
-					<!-- Ivana -->
+					</s:authorize>
+					<s:authorize access="hasRole('RADNIK')">
 					<td><a href = "getRezervacije?projekcijaID=${i.projekcijaID}">Prikazi rezervacije</a></td>
+					<td><a href = "getMestaUSali?projekcijaID=${i.projekcijaID}">Rezervisi i prodaj kartu</a></td>
+					</s:authorize>
 				</tr>
 			</c:forEach>
 		</table>

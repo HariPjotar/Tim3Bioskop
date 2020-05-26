@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 			${projekcija.film.naslov}<br> ${projekcija.datum}<br>
 			${projekcija.vreme}<br> ${brUlaznica}<br>
 			${projekcija.sala.ime}<br> ${cena} <br>
-			<input type="submit" name="Sacuvaj" value="Sacuvaj rezervaciju"> <br>
+			<input type="submit" name="Sacuvaj" value="Sacuvaj"> <br>
 			<a href="/BioskopSpring/filmController/nedeljniRepertoar"> Odustani od rezervacije </a>
 		</form>
 	</div>
