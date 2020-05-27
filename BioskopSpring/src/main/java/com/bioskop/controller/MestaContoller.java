@@ -90,7 +90,6 @@ public class MestaContoller {
 		
 		for(Mesta m : popunjenaMesta) {
 			mapa.put(new Sediste(m.getRedMesta(), m.getBrojMesta()), 1);
-			System.out.println("Treba iksirati mesto ["+m.getRedMesta()+"]["+m.getBrojMesta()+"]");
 		}
 
 		request.getSession().setAttribute("mapa", mapa);
@@ -108,9 +107,7 @@ public class MestaContoller {
 		List<Integer> listaRedova = new ArrayList<>();
 		
 		int tmp = 0;
-		System.out.println("NIZ MESTA2: ");
 		for(String s : mesto) {
-			System.out.println(s);
 			tempNiz[tmp] = s;
 			tmp++;
 			String[] pom = s.split(",");
@@ -118,17 +115,6 @@ public class MestaContoller {
 			listaRedova.add(Integer.parseInt(pom[0]));
 		}
 		
-		System.out.println("KOLONE KOJE TREBA REZERVISATI(I-OVI): ");
-		for(Integer i : listaKolona) {
-			System.out.println(i);
-		}
-		
-		System.out.println("REDOVI KOJE TREBA REZERVISATI(J-OVI): ");
-		for(Integer i : listaRedova) {
-			System.out.println(i);
-		}
-		
-		System.out.println("MESTO.LENGTH: " + mesto.length);
 		int brojUlaznica = mesto.length;
 		
 		Projekcija proj = (Projekcija) request.getSession().getAttribute("projekcija");
@@ -157,8 +143,6 @@ public class MestaContoller {
 		
 		Rezervacija rez = rr.save(r);
 		
-		//List<Rezervacija> temp2 = p.getRezervacijas();
-		//temp2.add(r);
 		request.getSession().setAttribute("rezervacija", rez);
 		dodajMestaISmanjiSlobodna(rez, p, request);
 		
@@ -177,15 +161,9 @@ public class MestaContoller {
 		
 		for (int l = 0; l < mesta.length; l++) {
 			String[] niz = mesta[l].split(",");
-			//Kad udje u metodu, split polovi string i onda se poveca string.LENGTH - popravi ovo sutra
-			System.out.println("NIZ MESTA: ");
-			for(String s : niz) {
-				System.out.println(s);
-			}
 			
 			int i = 0;
 			int j = 0;
-			
 			
 			try {
 				i = Integer.parseInt(niz[0]);
@@ -241,7 +219,7 @@ public class MestaContoller {
 		
 		request.getSession().setAttribute("karte", karte);
 				
-		return "PregledKarata";
+		return "PrikazKarata";
 	}
 	
 	@RequestMapping(value = "/vratiKarte", method = RequestMethod.GET)

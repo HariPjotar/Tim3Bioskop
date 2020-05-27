@@ -17,9 +17,9 @@
 	</div>
 	<div class = "center">
 		<div class="buttons">
-			<a href="/BioskopSpring/filmController/nedeljniRepertoar">Nedeljni repertoar.</a><br><br><br><br>
+			<a href="/BioskopSpring/filmController/nedeljniRepertoar">Nedeljni repertoar</a><br><br><br><br>
 	
-			<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">Najbolje ocenjeni filmovi u prethodnih mesec dana.</a><br><br><br><br>
+			<a href="/BioskopSpring/filmController/getNajboljeOcenjeniFilmovi">Najbolje ocenjeni filmovi u prethodnih mesec dana</a><br><br><br><br>
 			
 			<a href="/BioskopSpring/filmController/getZanrFilma">Pretraga filmova</a><br><br><br><br>
 			

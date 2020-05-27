@@ -1,0 +1,52 @@
+.background {
+	background-color: #1a1a1a;
+}
+
+.header {
+	text-align: center;
+	background: #330000;
+	color: #cc0000;
+	text-transform: uppercase;
+	font-size: 200%;
+}
+
+.centar {
+	background-color: #919191;
+	text-align: center;
+}
+
+table {
+	margin-left:auto;
+    margin-right:auto;
+    border:1px solid #cc0000;
+    border-collapse: collapse;
+}
+
+th {
+	text-align: center;
+	text-transform: uppercase;
+	color: #cc0000;
+	border:1px solid #cc0000;
+}
+
+td {
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	color: #cc0000;
+	border:1px solid #cc0000;
+	padding-right: 5px;
+	pading-left: 5px;
+}
+
+input[type=submit] {
+	padding: 15px 25px;
+	font-size: 20px;
+	font-family: "Courier New";
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	color: #e60000;
+	background-color: #800000;
+	border: none;
+}

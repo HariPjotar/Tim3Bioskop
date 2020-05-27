@@ -2,6 +2,10 @@
 	background-image: linear-gradient(#1a1a1a, #330000) !important;
 }
 
+.background2 {
+	background-color: #1a1a1a;
+}
+
 .header{
 	text-align: center;
 	background: #330000;
@@ -24,6 +28,12 @@ h3{
 
 .table {
 	width: 60%;
+}
+
+.table th {
+	text-align: center;
+	text-transform: uppercase;
+	color: #cc0000;
 }
 
 .table td {

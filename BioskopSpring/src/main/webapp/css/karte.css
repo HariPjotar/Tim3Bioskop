@@ -1,0 +1,27 @@
+table {
+	width: 500px;
+	border: 1px solid black;
+}
+
+th {
+	height: 50px;
+	background-color: #4d4d4d;
+	text-align: center;
+	text-transform: uppercase;
+	color: #cc0000;
+	border-bottom: 1px solid #cc0000;
+	font-size: 40px;
+}
+
+td {
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	color: #cc0000;
+	font-size: 25px;
+}
+
+img {
+	height: 130px;
+	width: 100px;
+}

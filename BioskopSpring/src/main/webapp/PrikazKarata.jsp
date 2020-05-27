@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+<%@include file ="css/karte.css"%>
+</style>
 <meta charset="ISO-8859-1">
 <title>Pregled karata</title>
 </head>
@@ -12,10 +15,11 @@
 		<c:forEach var="k" items="${karte}">
 		<table>
 			<tr>
-				<th>CINEMA UNIVERSE</th>
+				<th colspan="2">CINEMA UNIVERSE</th>
 			</tr>
 			<tr>
 				<td>${k.projekcija.film.naslov}</td>
+				<td rowspan="4"><img src='${k.projekcija.film.plakat}'></td>
 			</tr>
 			<tr>
 				<td>${k.projekcija.datum}  ${k.projekcija.vreme}</td>
@@ -24,7 +28,7 @@
 				<td>Sala: ${k.projekcija.sala}</td>
 			</tr>
 			<tr>
-				<td>${k.cena}din</td>
+				<td>Cena: ${k.cena}din</td>
 			</tr>
 		</table>
 		</c:forEach>

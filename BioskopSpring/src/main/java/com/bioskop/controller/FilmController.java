@@ -191,7 +191,7 @@ public class FilmController {
             prosecnaOcena = Math.round(prosecnaOcena * factor) / factor;
             prosecnaOcena = (double) prosecnaOcena;
             
-            if(prosecnaOcena >= 4.5) {  //Ako treba da se promeni kriterijum za sta e podrazumeva pod "dobro ocenjen film", samo promeni ovo 4.5
+            if(prosecnaOcena >= 4.5) {  //Ako treba da se promeni kriterijum za sta e podrazumeva pod "dobro ocenjen film", samo promeniti ovo 4.5
             	filmoviFinal.add(f);
             	konacneOcene[rbrOcene] = prosecnaOcena;
             	rbrOcene++;

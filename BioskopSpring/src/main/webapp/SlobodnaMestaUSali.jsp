@@ -5,7 +5,7 @@
 <html>
 <head>
 <style>
-<%@include file ="css/pocetna.css"%>
+<%@include file ="css/mestaSala.css"%>
 </style>
 <meta charset="ISO-8859-1">
 <title>Slobodna mesta u sali</title>
@@ -18,7 +18,7 @@
 	<%@ include file="navigation_bar.jsp"%>
 	<div class="center">
 		<form action="/BioskopSpring/mestaController/potvrdiMesta" method="POST">
-			<table border="1" style="text-align: center">
+			<table>
 				<c:forEach var="i" begin="1" end="${brojRedova}">
 					<tr>
 						<th>Red ${i}</th>

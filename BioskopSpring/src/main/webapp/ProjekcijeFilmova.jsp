@@ -6,7 +6,7 @@
 <html>
 <head>
 <style>
-<%@include file ="css/pocetna.css"%>
+<%@include file ="css/pretraga.css"%>
 </style>
 <meta charset="ISO-8859-1">
 <title>Projekcije filma</title>
@@ -16,19 +16,20 @@
 		<h1>Cinema Universe</h1>
 	</div>
 	<%@ include file="navigation_bar.jsp"%>
-	<div style="background-color: #919191">
+	<div class="centar">
 	<form action ="/BioskopSpring/mestaController/getProjekcije" method = "GET">
 		<select name = "filmID">
 		<c:forEach var = "f" items = "${filmovi}">
 			<option value = "${f.filmID}"> ${f.naslov}</option>
 		</c:forEach>
-	</select><br>
+	</select><br><br>
 		<input type = "submit" value = "Prikazi projekcije filma">
 	</form>
 	
-
+	<br><br>
+	
 	<c:if test="${!empty projekcije}">
-		<table border = "1">
+		<table>
 			<tr>
 				<th>Film</th>
 				<th>Datum projekcije</th>

@@ -1,0 +1,38 @@
+.background {
+	background-color: #1a1a1a;
+}
+
+.table {
+	width: 80%;
+}
+
+.table th {
+	text-align: center;
+	text-transform: uppercase;
+	color: #cc0000;
+	border-bottom: 1px solid #cc0000;
+}
+
+.table td {
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+	color: #cc0000;
+}
+
+.table tr:hover {
+	background-color: black;
+}
+
+.table a {
+	color: #cc0000;
+	text-decoration: none;
+	cursor: pointer;
+	outline: none;
+	border: none;
+}
+
+.table a:hover {
+	color: white;
+	text-decoration: none;
+}

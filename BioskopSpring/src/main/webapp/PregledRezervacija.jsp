@@ -5,15 +5,16 @@
 <html>
 <head>
 <style>
-<%@include file ="css/pocetna.css"%>
+<%@include file ="css/rezervacije.css"%>
 </style>
 <meta charset="ISO-8859-1">
 <title>Prodaja karata</title>
 </head>
-<body class="background2">	
+<%@ include file="navigation_bar.jsp"%>
+<body class="background">	
 	<p>${proj.film.naslov } ${proj.vreme } ${proj.datum } ${proj.sala.ime } ${proj.sifarnik.cena } </p>
 	<c:if test="${!empty rezervacije}">
-			<table>
+			<table class="table">
 			<tr>
 				<th>Ime</th>
 				<th>Prezime</th>
