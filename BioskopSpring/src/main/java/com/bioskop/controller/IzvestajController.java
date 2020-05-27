@@ -41,12 +41,6 @@ public class IzvestajController {
 		InputStream inputStream = this.getClass().getResourceAsStream("/izvestaji/PregledProfita.jrxml");
 		JasperReport jasperReport = JasperCompileManager.compileReport(inputStream);
 		Map<String, Object> params = new HashMap<String, Object>();	
-		//params.put("startDate", startDate);
-		//params.put("endDate", endDate);
-		/*if(karte!=null && karte.size()>0) {
-			params.put("startDate", startDate);
-			params.put("endDate", endDate);
-		}*/
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, dataSource);
 		inputStream.close();
 		

@@ -179,7 +179,6 @@ public class FilmController {
 		double prosecnaOcena = 0.0;
 		
 		for(Film f : filmovi) {
-			System.out.println(f.getNaslov());
 			for(Komentar k : f.getKomentars()) {
 				if(k.getOcena() > 0) {
 					prosecnaOcena += k.getOcena();
@@ -223,10 +222,6 @@ public class FilmController {
 			}
 		}
 		
-		for(String s : zanrovi) {
-			System.out.println(s);
-		}
-		
 		request.getSession().setAttribute("zanrovi", zanrovi);
 		return "PretragaFilmova";
 	}
@@ -236,11 +231,6 @@ public class FilmController {
 		List<Film> filmovi = fr.vratiFilmoveSaZanrom(zanr);
 		request.getSession().setAttribute("filmoviSaZanrom", filmovi);
 		
-		System.out.println("Filmovi koji sadrze zanr \"" + zanr + "\": ");
-		for(Film f : filmovi) {
-			System.out.println(f.getNaslov());
-		}
-		
 		return "PretragaFilmova";
 	}
 	
@@ -249,11 +239,6 @@ public class FilmController {
 		List<Film> filmovi = fr.vratiFilmoveSaGodinom(godina);
 		request.getSession().setAttribute("filmoviSaGodinom", filmovi);
 		
-		System.out.println("Filmovi iz godine "+ godina + ": ");
-		for(Film f : filmovi) {
-			System.out.println(f.getNaslov());
-		}
-		
 		return "PretragaFilmova";
 	}
 	
@@ -261,11 +246,6 @@ public class FilmController {
 	public String getFilmoviSaNaslovom(String naslov, HttpServletRequest request) {
 		List<Film> filmovi = fr.vratiFilmoveSaNaslovom(naslov);
 		request.getSession().setAttribute("filmoviSaNaslovom", filmovi);
-		
-		System.out.println("Filmovi sa naslovom \"" + naslov + "\": ");
-		for(Film f : filmovi) {
-			System.out.println(f.getNaslov());
-		}
 		
 		return "PretragaFilmova";
 	}

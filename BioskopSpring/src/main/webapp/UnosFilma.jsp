@@ -5,7 +5,7 @@
 <html>
 <head>
 <style>
-<%@include file ="css/pocetna.css"%>
+<%@include file ="css/pretraga.css"%>
 </style>
 <meta charset="ISO-8859-1">
 <title>Unos Filma</title>
@@ -15,18 +15,18 @@
 		<h1>Unos novog filma</h1>
 	</div>
 	<%@ include file="navigation_bar.jsp"%>
-	<div class="center">
+	<div class="centar">
 		<div style = "background-color: #919191;">
 			<form action = "/BioskopSpring/filmController/saveFilm" method ="POST">
-				<div class="center">Unesite naslov filma: 			   <input type = text name="naslov"><br></div>
-				<div class="center">Unesite glavne uloge u filmu: 	   <input type = text name="uloge"><br></div>
-				<div class="center">Unesite zanr filma: 			   <input type = text name="zanr"><br></div>
-				<div class="center">Unesite reditelja filma: 		   <input type = text name="reditelj"><br></div>
-				<div class="center">Unesite godinu filma: 			   <input type = text name="godina"><br></div>
-				<div class="center">Unesite trajanje filma: 		   <input type = text name="trajanje"><br></div>
-				<div class="center">Unesite opis filma: 			   <input type = text name="opis"><br></div>
-				<div class="center">Unesite putanju do plakata filma:  <input type = text name="plakat"><br></div>
-				<div class="center">Unesite putanju do trailera filma: <input type = text name="trailer"><br></div>
+				<p>Unesite naslov filma: 			   <input type = text name="naslov"><br><br>
+				Unesite glavne uloge u filmu: 	   <input type = text name="uloge"><br><br>
+				Unesite zanr filma: 			   <input type = text name="zanr"><br><br>
+				Unesite reditelja filma: 		   <input type = text name="reditelj"><br><br>
+				Unesite godinu filma: 			   <input type = text name="godina"><br><br>
+				Unesite trajanje filma: 		   <input type = text name="trajanje"><br><br>
+				Unesite opis filma: 			   <input type = text name="opis"><br><br>
+				Unesite putanju do plakata filma:  <input type = text name="plakat"><br><br>
+				Unesite putanju do trailera filma: <input type = text name="trailer"><br><br></p>
 				<br>
 				<input type = "submit" name="dugmeUnos" value = "Unesi film" class ="center">
 				<br>
